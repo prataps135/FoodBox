@@ -17,7 +17,8 @@ export class AdminService {
     return this.http.get<Admin[]>(this.baseUrl);
   }
 
-  ngOnInit(): void {
-
+  getByEmail(email:string):Observable<Admin>{
+    return this.http.get<Admin>(`${this.baseUrl}/${email}`);
   }
+
 }

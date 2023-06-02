@@ -25,6 +25,11 @@ public class AdminServiceImpl implements AdminService{
 	public Admin addAdmin(Admin admin) {
 		return adminRepo.save(admin);
 	}
+
+	@Override
+	public Admin getByEmail(String email) {
+		return adminRepo.findByEmail(email);
+	}
 	
 
 }

@@ -7,5 +7,5 @@ import com.foodbox.demo.model.Admin;
 
 @Repository
 public interface AdminRepo extends JpaRepository<Admin, Integer>{
-
+	Admin findByEmail(String emial);
 }

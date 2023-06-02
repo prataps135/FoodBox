@@ -10,4 +10,5 @@ import com.foodbox.demo.model.User;
 public interface UserService {
 	List<User> getAllUsers();
 	User addUser(User user);
+	User getByEmail(String email);
 }
