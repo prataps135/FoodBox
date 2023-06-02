@@ -1,0 +1,22 @@
+<div class="container">
+    <table class="table table-striped table hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of product">
+                <th>{{product.pid}}</th>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td><img src="{{product.imgSource}}" alt="loading..." class="img-size"></td>
+                <td>{{product.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

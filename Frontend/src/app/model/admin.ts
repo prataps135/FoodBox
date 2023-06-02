@@ -1,7 +1,7 @@
 export class Admin {
     id: number;
-    adminName: string;
-    adminEmail: string;
-    adminPassword: string;
-    adminPhoneNo: string;
+    name: string;
+    email: string;
+    password: string;
+    phoneNo: string;
 }

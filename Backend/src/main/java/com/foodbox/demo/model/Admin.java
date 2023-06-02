@@ -18,64 +18,66 @@ public class Admin {
 
 	@Column(name = "name", unique = false)
 	@NotNull
-	private String adminName;
+	private String name;
 
 	@Column(name = "email", unique = true)
 	@NotNull
-	private String adminEmail;
+	private String email;
 
 	@Column(name = "password", unique = false, nullable = false)
-	private String adminPassword;
+	private String password;
 
 	@Column(name = "phone_no", unique = true)
-	private long adminPhoneNo;
+	private long phoneNo;
 
 	public Admin() {
 		super();
 	}
 
-	public Admin(@NotNull String adminName, @NotNull String adminEmail, String adminPassword, long adminPhoneNo) {
+	public Admin(@NotNull String name, @NotNull String email, String password, long phoneNo) {
 		super();
-		this.adminName = adminName;
-		this.adminEmail = adminEmail;
-		this.adminPassword = adminPassword;
-		this.adminPhoneNo = adminPhoneNo;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.phoneNo = phoneNo;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public long getPhoneNo() {
+		return phoneNo;
+	}
+
+	public void setPhoneNo(long phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public String getAdminName() {
-		return adminName;
-	}
-
-	public void setAdminName(String adminName) {
-		this.adminName = adminName;
-	}
-
-	public String getAdminEmail() {
-		return adminEmail;
-	}
-
-	public void setAdminEmail(String adminEmail) {
-		this.adminEmail = adminEmail;
-	}
-
-	public String getAdminPassword() {
-		return adminPassword;
-	}
-
-	public void setAdminPassword(String adminPassword) {
-		this.adminPassword = adminPassword;
-	}
-
-	public long getAdminPhoneNo() {
-		return adminPhoneNo;
-	}
-
-	public void setAdminPhoneNo(long adminPhoneNo) {
-		this.adminPhoneNo = adminPhoneNo;
-	}
+	
 
 }
