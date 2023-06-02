@@ -1,12 +1,11 @@
 <div class="container">
-    <div class="card floating-card" style="width: 18rem;"
-    *ngFor="let product of product">
+    <div class="card floating-card" style="width: 18rem;" *ngFor="let product of product">
         <img class="card-img-top" src="{{product.imgSource}}" alt="Image loading...">
         <div class="card-body">
             <h3 class="card-title">{{product.name}}</h3>
             <p>Price {{product.price}}/-</p>
             <p class="card-text">{{product.description}}</p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
+            <a href="#" class="btn btn-primary" *ngIf="auth==='User'">Add to Cart</a>
         </div>
     </div>
 </div>

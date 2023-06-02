@@ -8,6 +8,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserLoginComponent } from './components/login/user-login/user-login.component';
 import { AdminLoginComponent } from './components/login/admin-login/admin-login.component';
+import { PortelComponent } from './components/admin/portel/portel.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
 
 const routes: Routes = [
   { path: 'admin-list', component: AdminListComponent },
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'add-product', component: AddProductComponent },
   { path: 'update-product/:pid', component: UpdateProductComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'portel', component: PortelComponent },
+  { path: 'user-list', component: UserListComponent },
   {
     path: 'login', component: LoginComponent,
     children: [

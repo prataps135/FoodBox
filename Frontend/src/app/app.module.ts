@@ -19,6 +19,9 @@ import { UserLoginComponent } from './components/login/user-login/user-login.com
 import { ProductService } from './services/product.service';
 import { AdminService } from './services/admin.service';
 import { UserService } from './services/user.service';
+import { AuthenticationService } from './services/authentication.service';
+import { PortelComponent } from './components/admin/portel/portel.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
 
 
 @NgModule({
@@ -33,6 +36,8 @@ import { UserService } from './services/user.service';
     LoginComponent,
     AdminLoginComponent,
     UserLoginComponent,
+    PortelComponent,
+    UserListComponent,
 
   ],
   imports: [
@@ -47,7 +52,8 @@ import { UserService } from './services/user.service';
   providers: [
     ProductService,
     AdminService,
-    UserService
+    UserService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

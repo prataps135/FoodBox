@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Admin } from 'src/app/model/admin';
 import { AdminService } from 'src/app/services/admin.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-login',
@@ -13,7 +15,9 @@ export class AdminLoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private adminService: AdminService
+    private adminService: AdminService,
+    private authService:AuthenticationService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +50,9 @@ export class AdminLoginComponent implements OnInit {
       alert("Email or Password invalid");
     } else {
       if (this.admin.password === password) {
-        alert("login successful!")
+        this.authService.setAuth("Admin");
+        alert("login successful!");
+        this.router.navigate(['home']);
       }
       else {
         alert("Email or Password invalid");

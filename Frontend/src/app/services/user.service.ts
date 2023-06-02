@@ -16,4 +16,8 @@ export class UserService {
   getByEmail(email:string):Observable<User>{
     return this.http.get<User>(`${this.baseUrl}/${email}`);
   }
+
+  getAllUser():Observable<User[]>{
+    return this.http.get<User[]>(this.baseUrl);
+  }
 }
