@@ -22,6 +22,8 @@ import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { PortelComponent } from './components/admin/portel/portel.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { CartComponent } from './components/order/cart/cart.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
     UserLoginComponent,
     PortelComponent,
     UserListComponent,
+    OrderListComponent,
+    CartComponent,
 
   ],
   imports: [

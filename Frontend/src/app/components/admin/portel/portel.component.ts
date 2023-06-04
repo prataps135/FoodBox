@@ -27,4 +27,8 @@ export class PortelComponent {
   productList(){
     this.router.navigate(['product-list']);
   }
+
+  orderList(){
+    this.router.navigate(['order-list']);
+  }
 }

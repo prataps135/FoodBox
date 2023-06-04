@@ -10,6 +10,7 @@ import { UserLoginComponent } from './components/login/user-login/user-login.com
 import { AdminLoginComponent } from './components/login/admin-login/admin-login.component';
 import { PortelComponent } from './components/admin/portel/portel.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
 
 const routes: Routes = [
   { path: 'admin-list', component: AdminListComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'portel', component: PortelComponent },
   { path: 'user-list', component: UserListComponent },
+  { path: 'order-list', component: OrderListComponent },
   {
     path: 'login', component: LoginComponent,
     children: [
