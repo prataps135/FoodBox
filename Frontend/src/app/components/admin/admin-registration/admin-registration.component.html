@@ -1,0 +1,22 @@
+<h1 class="text-center">Admin Registration</h1>
+<div class="container">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="admin.name">
+        </div>
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" name="email" [(ngModel)]="admin.email">
+        </div>
+        <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="admin.password">
+        </div>
+        <div class="form-group">
+            <label for="phoneNo" class="form-label">Phone No</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="admin.phoneNo">
+        </div>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+</div>

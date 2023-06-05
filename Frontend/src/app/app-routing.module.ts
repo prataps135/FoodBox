@@ -11,6 +11,8 @@ import { AdminLoginComponent } from './components/login/admin-login/admin-login.
 import { PortelComponent } from './components/admin/portel/portel.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { AdminRegistrationComponent } from './components/admin/admin-registration/admin-registration.component';
+import { UpdateAdminComponent } from './components/admin/update-admin/update-admin.component';
 
 const routes: Routes = [
   { path: 'admin-list', component: AdminListComponent },
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'portel', component: PortelComponent },
   { path: 'user-list', component: UserListComponent },
   { path: 'order-list', component: OrderListComponent },
+  { path: 'admin-registration', component: AdminRegistrationComponent },
+  { path: 'update-admin/:id', component: UpdateAdminComponent },
   {
     path: 'login', component: LoginComponent,
     children: [

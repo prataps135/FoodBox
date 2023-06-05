@@ -46,4 +46,13 @@ public class ProductServiceImpl implements ProductService{
 		Product product = productRepo.findById(pid).get();
 		return product;
 	}
+
+	@Override
+	public Product deleteProduct(int pid) {
+		Product product = productRepo.findById(pid).get();
+		if(product != null) {
+			productRepo.deleteById(pid);
+		}
+		return product;
+	}
 }

@@ -28,5 +28,9 @@ export class ProductService {
   updateProduct(pid:number,product:Product):Observable<any>{
     return this.http.put(`${this.baseUrl}/${pid}`,product);
   }
+
+  deleteProduct(pid:number):Observable<any>{
+    return this.http.delete(`${this.baseUrl}/${pid}`);
+  }
 }
 

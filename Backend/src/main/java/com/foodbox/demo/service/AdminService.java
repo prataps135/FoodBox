@@ -11,4 +11,7 @@ public interface AdminService {
 	List<Admin> getAllAdmin();
 	Admin addAdmin(Admin admin);
 	Admin getByEmail(String email);
+	Admin updateAdmin(int id,Admin admin);
+	Admin deleteAdmin(int id);
+	Admin getById(int id);
 }

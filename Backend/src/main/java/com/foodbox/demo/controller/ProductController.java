@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,11 +49,19 @@ public class ProductController {
 		Product product = productService.getById(pid);
 		return new ResponseEntity<Product>(product,HttpStatus.OK);
 	}
+	
 	@CrossOrigin
 	@PutMapping(value = "/product/{pid}")
 	public ResponseEntity<Product> updateProduct(@PathVariable("pid") int pid, @Valid @RequestBody Product product) {
 		Product updatedProduct = productService.updateProduct(pid, product);
 		return new ResponseEntity<Product>(updatedProduct, HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@DeleteMapping(value="/product/{pid}")
+	public ResponseEntity<Product> deleteProduct(@PathVariable int pid){
+		Product deletedProduct = productService.deleteProduct(pid);
+		return new ResponseEntity<Product>(deletedProduct,HttpStatus.OK);
 	}
 	
 	

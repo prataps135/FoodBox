@@ -12,4 +12,5 @@ public interface ProductService {
 	Product addProduct(Product newProduct);
 	Product updateProduct(int pid, Product product);
 	Product getById(int pid);
+	Product deleteProduct(int pid);
 }

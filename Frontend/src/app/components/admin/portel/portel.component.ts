@@ -31,4 +31,12 @@ export class PortelComponent {
   orderList(){
     this.router.navigate(['order-list']);
   }
+
+  addProduct(){
+    this.router.navigate(['add-product']);
+  }
+
+  adminRegistration(){
+    this.router.navigate(['admin-registration']);
+  }
 }

@@ -24,6 +24,8 @@ import { PortelComponent } from './components/admin/portel/portel.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { CartComponent } from './components/order/cart/cart.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { AdminRegistrationComponent } from './components/admin/admin-registration/admin-registration.component';
+import { UpdateAdminComponent } from './components/admin/update-admin/update-admin.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { OrderListComponent } from './components/order/order-list/order-list.com
     UserListComponent,
     OrderListComponent,
     CartComponent,
+    AdminRegistrationComponent,
+    UpdateAdminComponent,
 
   ],
   imports: [

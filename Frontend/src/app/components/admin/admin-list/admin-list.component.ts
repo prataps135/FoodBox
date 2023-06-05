@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Admin } from 'src/app/model/admin';
 import { AdminService } from 'src/app/services/admin.service';
 
@@ -11,7 +12,8 @@ export class AdminListComponent implements OnInit{
   admin:Admin[];
   
   constructor(
-    private adminService:AdminService
+    private adminService:AdminService,
+    private router:Router
   ){}
 
   ngOnInit(): void {
@@ -19,5 +21,8 @@ export class AdminListComponent implements OnInit{
       data => this.admin = data,
       err => console.log(err)
     );    
+  }
+  updateAdmin(id:number){
+    this.router.navigate([`update-admin/${id}`]);
   }
 }
