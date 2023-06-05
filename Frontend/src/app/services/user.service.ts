@@ -20,4 +20,16 @@ export class UserService {
   getAllUser():Observable<User[]>{
     return this.http.get<User[]>(this.baseUrl);
   }
+
+  getByid(id:number):Observable<User>{
+    return this.http.get<User>(`${this.baseUrl}/id/${id}`);
+  }
+
+  updateUser(id:number,user:User):Observable<any>{
+    return this.http.put(`${this.baseUrl}/${id}`,user);
+  }
+
+  deleteUser(id:number):Observable<any>{
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
 }

@@ -7,9 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,9 +43,30 @@ public class UserController {
 	}
 	
 	@CrossOrigin
-	@GetMapping(value = "/user/{email}")
+	@GetMapping(value = "/user/email/{email}")
 	public ResponseEntity<User> getByEmail(@PathVariable String email){
 		User user = userService.getByEmail(email);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@GetMapping(value = "/user/id/{id}")
+	public ResponseEntity<User> getById(@PathVariable int id){
+		User user = userService.getById(id);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@PutMapping(value="/user/{id}")
+	public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user){
+		User updatedUser = userService.updateUser(id, user);
+		return new ResponseEntity<User>(updatedUser,HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@DeleteMapping(value="/user/{id}")
+	public ResponseEntity<User> deleteUser(@PathVariable int id){
+		User user = userService.deleteUser(id);
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	

@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,7 +12,8 @@ export class UserListComponent implements OnInit{
   user:User[];
 
   constructor(
-    private userService:UserService
+    private userService:UserService,
+    private router:Router
   ){}
 
   ngOnInit(): void {
@@ -19,5 +21,16 @@ export class UserListComponent implements OnInit{
         data => this.user = data,
         err => console.log("This is error",err)
       );
+  }
+
+  updateUser(id:number){
+    this.router.navigate([`update-user/${id}`])
+  }
+
+  deleteUser(id:number){
+    this.userService.deleteUser(id).subscribe(
+      data => alert("User deleted successfully!!"),
+      err => console.log("this is error",err)
+    );
   }
 }

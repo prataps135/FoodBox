@@ -13,6 +13,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { AdminRegistrationComponent } from './components/admin/admin-registration/admin-registration.component';
 import { UpdateAdminComponent } from './components/admin/update-admin/update-admin.component';
+import { UpdateUserComponent } from './components/user/update-user/update-user.component';
 
 const routes: Routes = [
   { path: 'admin-list', component: AdminListComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'order-list', component: OrderListComponent },
   { path: 'admin-registration', component: AdminRegistrationComponent },
   { path: 'update-admin/:id', component: UpdateAdminComponent },
+  { path: 'update-user/:id', component: UpdateUserComponent },
   {
     path: 'login', component: LoginComponent,
     children: [

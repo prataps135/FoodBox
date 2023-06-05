@@ -25,4 +25,10 @@ export class AdminListComponent implements OnInit{
   updateAdmin(id:number){
     this.router.navigate([`update-admin/${id}`]);
   }
+  deleteAdmin(id:number){
+    this.adminService.deleteAdmin(id).subscribe(
+      data => alert("Admin deleted successfully!!"),
+      err => console.log("This is error",err)
+    );
+  }
 }

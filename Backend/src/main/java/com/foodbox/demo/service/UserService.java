@@ -11,4 +11,7 @@ public interface UserService {
 	List<User> getAllUsers();
 	User addUser(User user);
 	User getByEmail(String email);
+	User updateUser(int id,User user);
+	User deleteUser(int id);
+	User getById(int id);
 }

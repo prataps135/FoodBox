@@ -26,6 +26,7 @@ import { CartComponent } from './components/order/cart/cart.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { AdminRegistrationComponent } from './components/admin/admin-registration/admin-registration.component';
 import { UpdateAdminComponent } from './components/admin/update-admin/update-admin.component';
+import { UpdateUserComponent } from './components/user/update-user/update-user.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { UpdateAdminComponent } from './components/admin/update-admin/update-adm
     CartComponent,
     AdminRegistrationComponent,
     UpdateAdminComponent,
+    UpdateUserComponent,
 
   ],
   imports: [

@@ -18,14 +18,7 @@ export class AdminService {
   }
 
   getByEmail(email:string):Observable<Admin>{
-    let options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-originPatterns': '*',
-        'Access-Control-Allow-Headers': '*',
-      }),
-    };
-    return this.http.get<Admin>(`${this.baseUrl}/${email}`,options);
+    return this.http.get<Admin>(`${this.baseUrl}/${email}`);
   }
 
   addAdmin(admin:Admin):Observable<any>{
@@ -37,7 +30,7 @@ export class AdminService {
   }
   
   updateAdmin(id:number,admin:Admin):Observable<any>{
-    return this.http.put(`${this.baseUrl}/email/${id}`,admin);
+    return this.http.put(`${this.baseUrl}/${id}`,admin);
   }
 
   deleteAdmin(id:number):Observable<any>{

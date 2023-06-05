@@ -1,23 +1,22 @@
-<h1 class="text-center">Admin Updation</h1>
 <div class="container">
+    <h1 class="text-center">Update User</h1>
     <form (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" [(ngModel)]="admin.name">
+            <input type="text" class="form-control" name="name" [(ngModel)]="user.name">
         </div>
         <div class="form-group">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" name="email" [(ngModel)]="admin.email">
+            <input type="text" class="form-control" name="email" [(ngModel)]="user.email">
         </div>
         <div class="form-group">
             <label for="password" class="form-label">Password</label>
-            <input type="text" class="form-control" name="password" [(ngModel)]="admin.password">
+            <input type="text" class="form-control" name="password" [(ngModel)]="user.password">
         </div>
         <div class="form-group">
             <label for="phoneNo" class="form-label">Phone No</label>
-            <input type="number" class="form-control" name="name" [(ngModel)]="admin.phoneNo">
-        </div>
+            <input type="text" class="form-control" name="phoneNo" [(ngModel)]="user.phoneNo">
+        </div><br>
         <button class="btn btn-success" type="submit">Submit</button>
     </form>
 </div>
-

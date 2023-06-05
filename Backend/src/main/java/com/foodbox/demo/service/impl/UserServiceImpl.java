@@ -29,6 +29,35 @@ public class UserServiceImpl implements UserService{
 	public User getByEmail(String email) {
 		return userRepo.findByEmail(email);
 	}
+
+	@Override
+	public User updateUser(int id, User user) {
+		User existingUser = userRepo.findById(id).get();
+		if(existingUser != null) {
+			existingUser.setName(user.getName());
+			existingUser.setEmail(user.getEmail());
+			existingUser.setPassword(user.getPassword());
+			existingUser.setPhoneNo(user.getPhoneNo());
+			User updatedUser = userRepo.save(existingUser);
+			return updatedUser;
+		}
+		return user;
+	}
+
+	@Override
+	public User deleteUser(int id) {
+		User user = userRepo.findById(id).get();
+		if(user != null) {
+			userRepo.deleteById(id);
+		}
+		return user;
+	}
+
+	@Override
+	public User getById(int id) {
+		User user = userRepo.findById(id).get();
+		return user;
+	}
 	
 	
 }

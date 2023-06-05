@@ -23,52 +23,52 @@ import jakarta.validation.Valid;
 
 @RestController
 @Validated
-@RequestMapping(value="/api/v1")
+@RequestMapping(value = "/api/v1")
 public class AdminController {
-	
+
 	@Autowired
 	private AdminService adminService;
-	
+
 	@CrossOrigin
-	@GetMapping(value="/admin")
-	public ResponseEntity<List<Admin>> getAllAdmin(){
+	@GetMapping(value = "/admin")
+	public ResponseEntity<List<Admin>> getAllAdmin() {
 		List<Admin> admins = adminService.getAllAdmin();
-		return new ResponseEntity<List<Admin>>(admins,HttpStatus.OK);
+		return new ResponseEntity<List<Admin>>(admins, HttpStatus.OK);
 	}
-	
+
 	@CrossOrigin
-	@PostMapping(value="/admin")
+	@PostMapping(value = "/admin")
 	public ResponseEntity<Admin> addAdmin(@Valid @RequestBody Admin admin) {
 		Admin newAdmin = adminService.addAdmin(admin);
-		return new ResponseEntity<Admin>(newAdmin,HttpStatus.OK);
+		return new ResponseEntity<Admin>(newAdmin, HttpStatus.OK);
 	}
-	
+
 	@CrossOrigin
-	@GetMapping(value="/admin/email/{email}")
-	public ResponseEntity<Admin> getByEmail(@PathVariable String email){
+	@GetMapping(value = "/admin/email/{email}")
+	public ResponseEntity<Admin> getByEmail(@PathVariable String email) {
 		Admin admin = adminService.getByEmail(email);
-		return new ResponseEntity<Admin>(admin,HttpStatus.OK);
+		return new ResponseEntity<Admin>(admin, HttpStatus.OK);
 	}
-	
+
 	@CrossOrigin
-	@GetMapping(value="/admin/id/{id}")
-	public ResponseEntity<Admin> getById(@PathVariable int id){
+	@GetMapping(value = "/admin/id/{id}")
+	public ResponseEntity<Admin> getById(@PathVariable int id) {
 		Admin admin = adminService.getById(id);
-		return new ResponseEntity<Admin>(admin,HttpStatus.OK);
+		return new ResponseEntity<Admin>(admin, HttpStatus.OK);
 	}
-	
-	@CrossOrigin(originPatterns = "*", allowCredentials = "true", allowedHeaders = "*")
-	@PutMapping(value="/admin/{id}")
-	public ResponseEntity<Admin> updateAdmin(@PathVariable int id,@RequestBody Admin admin){
-		Admin updatedAdmin = adminService.updateAdmin(id, admin);
-		return new ResponseEntity<Admin>(updatedAdmin,HttpStatus.OK);
-	}
-	
+
 	@CrossOrigin
-	@DeleteMapping(value="/admin/{id}")
-	public ResponseEntity<Admin> deleteAdmin(@PathVariable int id){
-		Admin admin = adminService.deleteAdmin(id);
-		return new ResponseEntity<Admin>(admin,HttpStatus.OK);
+	@PutMapping(value = "/admin/{id}")
+	public ResponseEntity<Admin> updateAdmin(@PathVariable int id, @RequestBody Admin admin) {
+		Admin updatedAdmin = adminService.updateAdmin(id, admin);
+		return new ResponseEntity<Admin>(updatedAdmin, HttpStatus.OK);
 	}
-	
+
+	@CrossOrigin
+	@DeleteMapping(value = "/admin/{id}")
+	public ResponseEntity<Admin> deleteAdmin(@PathVariable int id) {
+		Admin admin = adminService.deleteAdmin(id);
+		return new ResponseEntity<Admin>(admin, HttpStatus.OK);
+	}
+
 }
