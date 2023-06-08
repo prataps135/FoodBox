@@ -12,12 +12,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of user">
+            <tr *ngFor="let user of users">
                <th>{{user.id}}</th>
                <td>{{user.name}}</td>
                <td>{{user.email}}</td>
                <td>{{user.password}}</td>
-               <td>{{user.phoneNo}}</td>
+               <td>{{user.address}}</td>
                <td>
                 <button class="btn btn-info" (click)="updateUser(user.id)">Update</button>&nbsp;
                 <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>

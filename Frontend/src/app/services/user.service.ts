@@ -14,7 +14,7 @@ export class UserService {
   ) { }
 
   getByEmail(email:string):Observable<User>{
-    return this.http.get<User>(`${this.baseUrl}/${email}`);
+    return this.http.get<User>(`${this.baseUrl}/email/${email}`);
   }
 
   getAllUser():Observable<User[]>{
@@ -31,5 +31,9 @@ export class UserService {
 
   deleteUser(id:number):Observable<any>{
     return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  addUser(user:User):Observable<any>{
+    return this.http.post(this.baseUrl,user);
   }
 }

@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit{
-  user:User[];
+  users:User[];
 
   constructor(
     private userService:UserService,
@@ -18,9 +18,10 @@ export class UserListComponent implements OnInit{
 
   ngOnInit(): void {
       this.userService.getAllUser().subscribe(
-        data => this.user = data,
+        data => this.users = data,
         err => console.log("This is error",err)
       );
+      console.log(this.users);
   }
 
   updateUser(id:number){

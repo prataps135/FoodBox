@@ -18,7 +18,7 @@ export class AdminService {
   }
 
   getByEmail(email:string):Observable<Admin>{
-    return this.http.get<Admin>(`${this.baseUrl}/${email}`);
+    return this.http.get<Admin>(`${this.baseUrl}/email/${email}`);
   }
 
   addAdmin(admin:Admin):Observable<any>{

@@ -3,9 +3,10 @@
         <img class="card-img-top" src="{{product.imgSource}}" alt="Image loading...">
         <div class="card-body">
             <h3 class="card-title">{{product.name}}</h3>
-            <p>Price {{product.price}}/-</p>
+            <p>Price {{product.price | currency:'INR'}}/-</p>
             <p class="card-text">{{product.description}}</p>
-            <a href="#" class="btn btn-primary" *ngIf="auth==='User'">Add to Cart</a>
+            <button class="btn btn-primary" *ngIf="auth==='User'"
+                (click)="addProductToCart(product)">Add to Cart</button>
         </div>
     </div>
 </div>

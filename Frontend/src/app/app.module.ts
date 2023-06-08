@@ -27,6 +27,8 @@ import { OrderListComponent } from './components/order/order-list/order-list.com
 import { AdminRegistrationComponent } from './components/admin/admin-registration/admin-registration.component';
 import { UpdateAdminComponent } from './components/admin/update-admin/update-admin.component';
 import { UpdateUserComponent } from './components/user/update-user/update-user.component';
+import { UserRegistrationComponent } from './components/user/user-registration/user-registration.component';
+import { CartService } from './services/cart.service';
 
 
 @NgModule({
@@ -48,6 +50,7 @@ import { UpdateUserComponent } from './components/user/update-user/update-user.c
     AdminRegistrationComponent,
     UpdateAdminComponent,
     UpdateUserComponent,
+    UserRegistrationComponent,
 
   ],
   imports: [
@@ -63,7 +66,8 @@ import { UpdateUserComponent } from './components/user/update-user/update-user.c
     ProductService,
     AdminService,
     UserService,
-    AuthenticationService
+    AuthenticationService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

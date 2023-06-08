@@ -1,10 +1,16 @@
 package com.foodbox.demo.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -30,19 +36,20 @@ public class User {
 	@NotNull
 	private long phoneNo;
 
-//	@Column(name = "address", unique = false, nullable = false)
-//	private String address;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Address> address;
 
 	public User() {
 		super();
 	}
 
-	public User(String name, String email, @NotNull String password, @NotNull long phoneNo) {
+	public User(String name, String email, @NotNull String password, @NotNull long phoneNo, List<Address> address) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.phoneNo = phoneNo;
+		this.address = address;
 	}
 
 	public String getName() {
@@ -77,8 +84,19 @@ public class User {
 		this.phoneNo = phoneNo;
 	}
 
+	public List<Address> getAddress() {
+		return address;
+	}
+
+	public void setAddress(List<Address> address) {
+		this.address = address;
+	}
+
 	public int getId() {
 		return id;
 	}
+
+	
+
 
 }

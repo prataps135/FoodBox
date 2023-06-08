@@ -1,10 +1,13 @@
 package com.foodbox.demo.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -31,6 +34,9 @@ public class Product {
 	@Column
 	@NotNull
 	private String imgSource;
+	
+	@OneToMany
+	private List<Cuisine> cuisine;
 
 	public Product() {
 		super();
