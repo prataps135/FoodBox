@@ -7,6 +7,7 @@
                 <th>Description</th>
                 <th>Image</th>
                 <th>Price</th>
+                <th>Cuisine</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -17,6 +18,7 @@
                 <td>{{product.description}}</td>
                 <td><img src="{{product.imgSource}}" alt="loading..." class="img-size"></td>
                 <td>{{product.price}}</td>
+                <td>{{product.cuisine.cuisineName}}</td>
                 <td><button class="btn btn-info" (click)="updateProduct(product.pid)">Update</button>&nbsp;
                 <button class="btn btn-danger" (click)="deleteProduct(product.pid)">Delete</button></td>
             </tr>

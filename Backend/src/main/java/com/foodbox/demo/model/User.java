@@ -8,8 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -36,14 +34,14 @@ public class User {
 	@NotNull
 	private long phoneNo;
 
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<Address> address;
+	@OneToOne(cascade=CascadeType.ALL)
+	private Address address;
 
 	public User() {
 		super();
 	}
 
-	public User(String name, String email, @NotNull String password, @NotNull long phoneNo, List<Address> address) {
+	public User(String name, String email, @NotNull String password, @NotNull long phoneNo, Address address) {
 		super();
 		this.name = name;
 		this.email = email;
@@ -84,11 +82,11 @@ public class User {
 		this.phoneNo = phoneNo;
 	}
 
-	public List<Address> getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(List<Address> address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 

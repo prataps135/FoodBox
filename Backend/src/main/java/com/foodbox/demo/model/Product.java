@@ -2,11 +2,13 @@ package com.foodbox.demo.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -35,11 +37,19 @@ public class Product {
 	@NotNull
 	private String imgSource;
 	
-	@OneToMany
-	private List<Cuisine> cuisine;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Cuisine cuisine;
 
 	public Product() {
 		super();
+	}
+
+	public Cuisine getCuisine() {
+		return cuisine;
+	}
+
+	public void setCuisine(Cuisine cuisine) {
+		this.cuisine = cuisine;
 	}
 
 	public Product(@NotNull String name, @NotNull String description, @NotNull int price, @NotNull String imgSource) {

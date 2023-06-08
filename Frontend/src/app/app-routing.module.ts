@@ -16,6 +16,7 @@ import { UpdateAdminComponent } from './components/admin/update-admin/update-adm
 import { UpdateUserComponent } from './components/user/update-user/update-user.component';
 import { UserRegistrationComponent } from './components/user/user-registration/user-registration.component';
 import { CartComponent } from './components/order/cart/cart.component';
+import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 
 const routes: Routes = [
   { path: 'admin-list', component: AdminListComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'update-user/:id', component: UpdateUserComponent },
   { path: 'user-registration', component: UserRegistrationComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'user-details/:id', component: UserDetailComponent },
   {
     path: 'login', component: LoginComponent,
     children: [

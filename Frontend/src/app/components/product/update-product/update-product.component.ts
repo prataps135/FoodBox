@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Cuisine } from 'src/app/model/cuisine';
 import { Product } from 'src/app/model/product';
+import { CuisineService } from 'src/app/services/cuisine.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -11,10 +13,12 @@ import { ProductService } from 'src/app/services/product.service';
 export class UpdateProductComponent implements OnInit {
   product: Product;
   id: number;
+  cuisines:Cuisine[]=[];
 
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cuisineService:CuisineService
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +28,11 @@ export class UpdateProductComponent implements OnInit {
     this.productService.getById(this.id).subscribe(
       data => this.product = data,
       err => console.log("This is error ",err)
+    );
+
+    this.cuisineService.getAllCuisine().subscribe(
+      data => this.cuisines = data,
+      err => console.log("This is error",err)
     );
   }
 

@@ -1,11 +1,13 @@
 package com.foodbox.demo.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Cuisine {
@@ -16,9 +18,13 @@ public class Cuisine {
 	
 	private String cuisineName;
 	
-	@ManyToOne
-	@JoinColumn
-	private Product product;
+	@OneToMany
+	@JoinColumn(name="product_id")
+	private List<Product> product;
+	
+	public Cuisine() {
+		
+	}
 
 	public Cuisine(String cuisineName) {
 		super();

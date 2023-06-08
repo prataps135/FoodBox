@@ -29,6 +29,8 @@ import { UpdateAdminComponent } from './components/admin/update-admin/update-adm
 import { UpdateUserComponent } from './components/user/update-user/update-user.component';
 import { UserRegistrationComponent } from './components/user/user-registration/user-registration.component';
 import { CartService } from './services/cart.service';
+import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
+import { CuisineService } from './services/cuisine.service';
 
 
 @NgModule({
@@ -51,6 +53,7 @@ import { CartService } from './services/cart.service';
     UpdateAdminComponent,
     UpdateUserComponent,
     UserRegistrationComponent,
+    UserDetailComponent,
 
   ],
   imports: [
@@ -67,7 +70,8 @@ import { CartService } from './services/cart.service';
     AdminService,
     UserService,
     AuthenticationService,
-    CartService
+    CartService,
+    CuisineService
   ],
   bootstrap: [AppComponent]
 })

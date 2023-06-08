@@ -38,10 +38,11 @@ public class UserServiceImpl implements UserService{
 			existingUser.setEmail(user.getEmail());
 			existingUser.setPassword(user.getPassword());
 			existingUser.setPhoneNo(user.getPhoneNo());
+			existingUser.setAddress(user.getAddress());
 			User updatedUser = userRepo.save(existingUser);
 			return updatedUser;
 		}
-		return user;
+		return null;
 	}
 
 	@Override

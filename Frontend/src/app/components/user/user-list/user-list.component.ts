@@ -34,4 +34,8 @@ export class UserListComponent implements OnInit{
       err => console.log("this is error",err)
     );
   }
+
+  userDetail(id:number){
+    this.router.navigate([`user-details/${id}`]);
+  }
 }

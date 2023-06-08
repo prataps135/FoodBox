@@ -17,6 +17,13 @@
             <label for="price" class="form-label">Price</label>
             <input type="text" class="form-control" name="price" [(ngModel)]="product.price">
         </div><br>
+        <div class="form-group">
+            <label for="cuisine" class="form-label">Cuisine</label>
+            <select name="cuisine" id="" class="form-select" [(ngModel)]="product.cuisine">
+                <option value="{{cuisine}}" *ngFor="let cuisine of cuisines">{{cuisine.cuisineName}}</option>
+            </select>
+        </div>
+        <br>
         <button class="btn btn-success" type="submit">Submit</button>
     </form>
 </div>

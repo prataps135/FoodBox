@@ -1,0 +1,26 @@
+<h1 class="text-center">User Details</h1>
+<div class="container">
+    <div>
+        <span><label for="">ID =&nbsp; </label>{{user.id}}</span>
+    </div>
+    <div>
+        <span><label for="">Name =&nbsp; </label>{{user.name}}</span>
+    </div>
+    <div>
+        <span><label for="">Email =&nbsp; </label>{{user.email}}</span>
+    </div>
+    <div>
+        <span><label for="">Password =&nbsp; </label>{{user.password}}</span>
+    </div>
+    <div>
+        <span><label for="">Phone No =&nbsp; </label>{{user.phoneNo}}</span>
+    </div><hr>
+    <div>
+        <span>
+            Address :-
+            <pre>
+                {{user.address | json}}
+            </pre>
+        </span>
+    </div>
+</div>
