@@ -31,6 +31,7 @@ import { UserRegistrationComponent } from './components/user/user-registration/u
 import { CartService } from './services/cart.service';
 import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 import { CuisineService } from './services/cuisine.service';
+import { ConfirmationComponent } from './components/order/confirmation/confirmation.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { CuisineService } from './services/cuisine.service';
     UpdateUserComponent,
     UserRegistrationComponent,
     UserDetailComponent,
+    ConfirmationComponent,
 
   ],
   imports: [

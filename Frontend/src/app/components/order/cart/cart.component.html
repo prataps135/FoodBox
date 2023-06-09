@@ -1,16 +1,25 @@
 <div class="container">
-    <table>
-        <thead>
-            <tr>
-                <th>Product name</th>
-                <th>Product price</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let product of products">
-                <td>{{product.name}}</td>
-                <td>{{product.price}}</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Product price</th>
+                    <th>Quantity</th>
+                    <th>Sub Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of cartProducts">
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td><input type="number" class="form-control" name="counter" [(ngModel)]="product.counter"></td>
+                    <td><input type="text" class="form-control" name="subTotal" #subTotal="ngModel" [(ngModel)]="product.price * product.counter" disabled ></td>
+                </tr>
+                <tr>
+                    <th colspan="4"><button class="btn btn-success" style="float:right" type="button" (click)="onConfirm()">Confirm</button></th>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <div #container></div> -->
+        <!-- <app-confirmation [grandTotal]="grandTotal"></app-confirmation> -->
 </div>

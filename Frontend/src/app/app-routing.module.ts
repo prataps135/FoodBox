@@ -17,6 +17,7 @@ import { UpdateUserComponent } from './components/user/update-user/update-user.c
 import { UserRegistrationComponent } from './components/user/user-registration/user-registration.component';
 import { CartComponent } from './components/order/cart/cart.component';
 import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
+import { ConfirmationComponent } from './components/order/confirmation/confirmation.component';
 
 const routes: Routes = [
   { path: 'admin-list', component: AdminListComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'user-registration', component: UserRegistrationComponent },
   { path: 'cart', component: CartComponent },
   { path: 'user-details/:id', component: UserDetailComponent },
+  { path: 'order-confirmation', component: ConfirmationComponent },
   {
     path: 'login', component: LoginComponent,
     children: [

@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -39,6 +38,9 @@ public class Product {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cuisine cuisine;
+	
+	@Column(name="counter",nullable=true)
+	private int counter;
 
 	public Product() {
 		super();
@@ -52,12 +54,21 @@ public class Product {
 		this.cuisine = cuisine;
 	}
 
-	public Product(@NotNull String name, @NotNull String description, @NotNull int price, @NotNull String imgSource) {
+	public Product(@NotNull String name, @NotNull String description, @NotNull int price, @NotNull String imgSource,int counter) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.imgSource = imgSource;
+		this.counter = counter;
+	}
+
+	public int getCounter() {
+		return counter;
+	}
+
+	public void setCounter(int counter) {
+		this.counter = counter;
 	}
 
 	public String getName() {

@@ -5,16 +5,26 @@ import { Product } from '../model/product';
   providedIn: 'root'
 })
 export class CartService {
-  product:Product[]=[];
+  productList: Product[] = [];
 
   constructor() { }
 
-  getProduct(){
-    return this.product;
+  getProduct() {
+    return this.productList;
   }
 
-  setProduct(product:Product){
-    this.product.push(product);
-    alert("Product added to cart!!");
+  setProduct(product: Product) {
+    let isAdded: boolean = false;
+    for (let pro of this.productList) {
+      if (product.name === pro.name) {
+        console.log("element found");
+        product.counter += 1;
+        console.log(product.counter);
+        isAdded = true;
+      }
+    }
+    if (isAdded === false) {
+      this.productList.push(product);
+    }
   }
 }

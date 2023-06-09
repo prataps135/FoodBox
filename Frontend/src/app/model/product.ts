@@ -7,5 +7,6 @@ export class Product {
     price: number;
     imgSource: string;
     cuisine:Cuisine;
+    counter:number;
 }
 

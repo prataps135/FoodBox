@@ -1,0 +1,45 @@
+<div class="container">
+    <h1 class="text-center">Confirmation</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of cartProducts;let i = index">
+                <th>{{i+1}}</th>
+                <td>{{product.name}} X {{product.counter}}</td>
+                <td>{{product.counter * product.price}}</td>
+            </tr>
+            <tr>
+                <th colspan="2">Sub Total</th>
+                <td>{{total}}</td>
+            </tr>
+            <tr>
+                <th colspan="2">SGST(9%)</th>
+                <td>{{sgst}}</td>
+            </tr>
+            <tr>
+                <th colspan="2">CGST(9%)</th>
+                <td>{{cgst}}</td>
+            </tr>
+            <tr>
+                <th colspan="2">Grand Total</th>
+                <td>{{grandTotal}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <button class="btn btn-warning" type="button"
+                    style="float:right">Pay {{grandTotal}}</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="container">
+        <h2>Delivery Address :- </h2>
+        <p></p>
+    </div>
+</div>
