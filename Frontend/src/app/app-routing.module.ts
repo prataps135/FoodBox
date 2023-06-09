@@ -18,6 +18,8 @@ import { UserRegistrationComponent } from './components/user/user-registration/u
 import { CartComponent } from './components/order/cart/cart.component';
 import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 import { ConfirmationComponent } from './components/order/confirmation/confirmation.component';
+import { PaymentComponent } from './components/order/payment/payment.component';
+import { BillComponent } from './components/order/bill/bill.component';
 
 const routes: Routes = [
   { path: 'admin-list', component: AdminListComponent },
@@ -35,6 +37,8 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'user-details/:id', component: UserDetailComponent },
   { path: 'order-confirmation', component: ConfirmationComponent },
+  { path: 'payment-gateway/:amount', component: PaymentComponent },
+  { path: 'bill', component: BillComponent },
   {
     path: 'login', component: LoginComponent,
     children: [

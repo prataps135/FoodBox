@@ -32,6 +32,8 @@ import { CartService } from './services/cart.service';
 import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 import { CuisineService } from './services/cuisine.service';
 import { ConfirmationComponent } from './components/order/confirmation/confirmation.component';
+import { PaymentComponent } from './components/order/payment/payment.component';
+import { BillComponent } from './components/order/bill/bill.component';
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { ConfirmationComponent } from './components/order/confirmation/confirmat
     UserRegistrationComponent,
     UserDetailComponent,
     ConfirmationComponent,
+    PaymentComponent,
+    BillComponent,
 
   ],
   imports: [

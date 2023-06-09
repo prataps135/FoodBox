@@ -6,7 +6,7 @@ import { Product } from '../model/product';
 })
 export class CartService {
   productList: Product[] = [];
-
+  finalProducts:Product[];
   constructor() { }
 
   getProduct() {
@@ -26,5 +26,13 @@ export class CartService {
     if (isAdded === false) {
       this.productList.push(product);
     }
+  }
+
+  setFinalProductList(product:Product[]){
+    this.finalProducts = product;
+  }
+
+  getFinalProductList():Product[]{
+    return this.finalProducts;
   }
 }

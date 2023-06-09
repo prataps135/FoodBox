@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1>FoodBox.com</h1>
+            <div>3184 Spruce Drive Pittsburgh</div>
+            <div>Banglore, India</div>
+            <div><a href="mailto:customer_care@foodbox.com">customer_care@foodbox.com</a></div>
+            <div><a href="tel:7877696954">7877696954</a></div>
+        </div>
+        <div class="card-body">
+            <div>Bill to :- </div><br>
+            <h2>{{currentUser.name}}</h2>
+            <div>{{currentUser.address.street}}</div>
+            <div>{{currentUser.address.city}}</div>
+            <div>{{currentUser.address.zipcode}}</div>
+            <div><a href="mailto:{{currentUser.email}}">{{currentUser.email}}</a></div>
+            <div><a href="tel:{{currentUser.phoneNo}}">{{currentUser.phoneNo}}</a></div>
+        </div>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of finalProducts;let i = index">
+                        <th>{{i+1}}</th>
+                        <td>{{product.name}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.counter}}</td>
+                        <td>{{product.price * product.counter}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="4">Sub Total</th>
+                        <td>{{subTotal}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="4">SGST(9%)</th>
+                        <td>{{sgst}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="4">CGST(9%)</th>
+                        <td>{{cgst}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="4">Grand Total</th>
+                        <td>{{grandTotal}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <a href="javascript:window.print()" class="btn btn-primary btn-lg" style="float: right;">
+                                <mat-icon> local_printshop</mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="container text-center" style="font-size: medium;">
+                ThankYou for shopping with us...
+            </div>
+        </div>
+    </div>
+</div>

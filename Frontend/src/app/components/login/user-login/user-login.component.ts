@@ -51,6 +51,7 @@ export class UserLoginComponent implements OnInit {
     } else {
       if (this.user.password === password) {
         this.authService.setAuth("User");
+        this.authService.setUser(this.user);
         alert("login successful!");
         this.router.navigate(['home']);
       }

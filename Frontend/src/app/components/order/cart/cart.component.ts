@@ -17,6 +17,7 @@ export class CartComponent implements OnInit,AfterContentInit{
 
   cartProducts:Product[];
   grandTotal:number;
+  // confirmButton:boolean;
   
   constructor(
     private cartService:CartService,
@@ -32,14 +33,30 @@ export class CartComponent implements OnInit,AfterContentInit{
   }
 
   onConfirm(){
-    // let total = 0;
-    // for(let product of this.cartProducts){
-    //   total = total + (product.counter * product.price);
-    // }
-    // this.grandTotal = total 
-    // console.log("Grand total = ",this.grandTotal);
-
+    this.removeUnwantedProducts();
+    this.cartService.setFinalProductList(this.cartProducts);
     this.router.navigate(['order-confirmation']);
   }
 
+  removeUnwantedProducts() {
+    for (let product of this.cartProducts) {
+      if (product.counter == 0 || product.counter <= 0) {
+        let index = this.cartProducts.indexOf(product);
+        this.cartProducts.splice(index,index);
+      }
+    }
+  }
+  ngOnDestroy(){
+    console.log("Destroy called");
+  }
+
+  // confirmButtonFunction(){
+  //   let active = false;
+  //   for(let product of this.cartProducts){
+  //     if(!(product.counter<0)){
+  //       active = true;
+  //     }
+  //   }
+  //   return false;
+  // }
 }

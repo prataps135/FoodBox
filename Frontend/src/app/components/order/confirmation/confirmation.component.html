@@ -32,14 +32,26 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <button class="btn btn-warning" type="button"
-                    style="float:right">Pay {{grandTotal}}</button>
+                    <button class="btn btn-warning" type="button" style="float:right" (click)="payment(grandTotal)">Pay
+                        {{grandTotal}}</button>
                 </td>
             </tr>
         </tbody>
     </table>
     <div class="container">
-        <h2>Delivery Address :- </h2>
-        <p></p>
+        <div class="row">
+            <div class="col">
+                <h2>Delivery Address :- </h2>
+                <h3>{{currentUser.name}}</h3>
+                <div>Street = {{currentUser.address.street}}</div>
+                <div>City = {{currentUser.address.city}}</div>
+                <div>Zipcode = {{currentUser.address.zipcode}}</div>
+            </div>
+            <div class="col">
+                <div class="position-relative top-50 left-50">
+                    <button class="btn btn-info" (click)="updateAddress(currentUser.id)">Change Address</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
