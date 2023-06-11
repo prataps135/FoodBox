@@ -18,7 +18,7 @@
                 <td>{{order.productName}} x {{order.quantity}}</td>
                 <td>{{order.userName}}</td>
                 <td>
-                    <select class="form-control" name="status" [formControl]="statusControl">
+                    <select class="form-control" name="status" [(ngModel)]="order.status">
                         <option
                             [value]="status" 
                             *ngFor="let status of statusList"

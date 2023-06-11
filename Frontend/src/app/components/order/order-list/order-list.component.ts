@@ -11,7 +11,7 @@ import { OrderService } from 'src/app/services/order.service';
 export class OrderListComponent implements OnInit{
   orderList:Order[];
   currentStatus:string;
-  statusControl :FormControl;
+  // statusControl :FormControl;
   statusList:string[]=["pending","confirmed","preparing","on the way","deliverd"];
 
   constructor(
@@ -25,16 +25,20 @@ export class OrderListComponent implements OnInit{
         err => console.log("This is error",err)
       );
 
-      this.statusControl = new FormControl('');
+      // this.statusControl = new FormControl('');
   }
 
   
   updateStatus(order:Order){
-    order.status = this.statusControl.value;
+    // order.status = this.statusControl.value;
+    // this.orderService.updateStatus(order).subscribe(
+    //   data => console.log(data),
+    //   err => console.log("This is error",err)
+    // );
+    
     this.orderService.updateStatus(order).subscribe(
-      data => alert("update successfully"),
+      data => alert("Update successfully"),
       err => console.log("This is error",err)
     );
-    
   }
 }

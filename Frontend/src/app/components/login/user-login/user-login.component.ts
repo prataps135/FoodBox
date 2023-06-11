@@ -11,17 +11,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
-  user: User;
+  user: User = new User;
   loginForm: FormGroup;
 
   constructor(
     private userService: UserService,
     private authService: AuthenticationService,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    // this.admin = new Admin();
+    // this.user = new User;
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -42,23 +42,26 @@ export class UserLoginComponent implements OnInit {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
     this.userService.getByEmail(email).subscribe(
-      data => this.user = data,
+      data => {
+        this.user = data
+        if (this.user === null || this.user === undefined) {
+          alert("Email or Password invalid");
+        } else {
+          if (this.user.password === password) {
+            this.authService.setAuth("User");
+            this.authService.setUser(this.user);
+            alert("login successful!");
+            this.router.navigate(['home']);
+          }
+          else {
+            alert("Email or Password invalid");
+          }
+        }
+      },
       err => console.log('This is error ', err)
     );
 
-    if (this.user === null || this.user === undefined) {
-      alert("Email or Password invalid");
-    } else {
-      if (this.user.password === password) {
-        this.authService.setAuth("User");
-        this.authService.setUser(this.user);
-        alert("login successful!");
-        this.router.navigate(['home']);
-      }
-      else {
-        alert("Email or Password invalid");
-      }
-    }
+
   }
 
   get email() {

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.scss']
 })
-export class UpdateUserComponent implements OnInit {
+export class UpdateUserComponent implements OnInit, OnDestroy{
   user: User;
   id: number;
   userForm: FormGroup;
@@ -17,7 +18,8 @@ export class UpdateUserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService:AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +27,11 @@ export class UpdateUserComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.getUserDetails(this.id);
     this.userFormInit();
+  }
+
+  ngOnDestroy(): void {
+      this.authService.setUser(this.user);
+      console.log("User auth set in OnDestroy");
   }
 
   getUserDetails(id: number): void {

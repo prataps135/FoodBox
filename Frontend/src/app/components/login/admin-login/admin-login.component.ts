@@ -16,8 +16,8 @@ export class AdminLoginComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
-    private authService:AuthenticationService,
-    private router:Router
+    private authService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -42,22 +42,25 @@ export class AdminLoginComponent implements OnInit {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
     this.adminService.getByEmail(email).subscribe(
-      data => this.admin = data,
+      data => {
+        this.admin = data;
+        if (this.admin === null || this.admin === undefined) {
+          alert("Email or Password invalid");
+        } else {
+          if (this.admin.password === password) {
+            this.authService.setAuth("Admin");
+            alert("login successful!");
+            this.router.navigate(['home']);
+          }
+          else {
+            alert("Email or Password invalid");
+          }
+        }
+      },
       err => console.log('This is error ', err)
     );
 
-    if (this.admin === null || this.admin === undefined) {
-      alert("Email or Password invalid");
-    } else {
-      if (this.admin.password === password) {
-        this.authService.setAuth("Admin");
-        alert("login successful!");
-        this.router.navigate(['home']);
-      }
-      else {
-        alert("Email or Password invalid");
-      }
-    }
+
   }
 
   get email() {
