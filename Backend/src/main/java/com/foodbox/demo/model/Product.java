@@ -13,54 +13,59 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pid;
-	
+
 	@Column
 	@NotNull
 	private String name;
-	
+
 	@Column
 	@NotNull
 	private String description;
-	
+
 	@Column
 	@NotNull
 	private int price;
-	
+
 	@Column
 	@NotNull
 	private String imgSource;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Cuisine cuisine;
-	
-	@Column(name="counter",nullable=true)
+
+	@Column
+	private String cuisine;
+
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	private Cuisine cuisine;
+
+	@Column(name = "counter", nullable = true)
 	private int counter;
 
 	public Product() {
 		super();
 	}
 
-	public Cuisine getCuisine() {
-		return cuisine;
-	}
+//	public Cuisine getCuisine() {
+//		return cuisine;
+//	}
+//
+//	public void setCuisine(Cuisine cuisine) {
+//		this.cuisine = cuisine;
+//	}
 
-	public void setCuisine(Cuisine cuisine) {
-		this.cuisine = cuisine;
-	}
-
-	public Product(@NotNull String name, @NotNull String description, @NotNull int price, @NotNull String imgSource,int counter) {
+	public Product(@NotNull String name, @NotNull String description, @NotNull int price, @NotNull String imgSource,
+			int counter, String cuisine) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.imgSource = imgSource;
 		this.counter = counter;
+		this.cuisine = cuisine;
 	}
 
 	public int getCounter() {
@@ -73,6 +78,14 @@ public class Product {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getCuisine() {
+		return cuisine;
+	}
+
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
 	}
 
 	public void setName(String name) {
@@ -106,5 +119,5 @@ public class Product {
 	public int getPid() {
 		return pid;
 	}
-	
+
 }

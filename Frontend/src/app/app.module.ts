@@ -34,6 +34,8 @@ import { CuisineService } from './services/cuisine.service';
 import { ConfirmationComponent } from './components/order/confirmation/confirmation.component';
 import { PaymentComponent } from './components/order/payment/payment.component';
 import { BillComponent } from './components/order/bill/bill.component';
+import { PaymentService } from './services/payment.service';
+import { OrderService } from './services/order.service';
 
 
 @NgModule({
@@ -77,7 +79,9 @@ import { BillComponent } from './components/order/bill/bill.component';
     UserService,
     AuthenticationService,
     CartService,
-    CuisineService
+    CuisineService,
+    PaymentService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

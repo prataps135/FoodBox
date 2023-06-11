@@ -8,13 +8,22 @@
             <div><a href="tel:7877696954">7877696954</a></div>
         </div>
         <div class="card-body">
-            <div>Bill to :- </div><br>
-            <h2>{{currentUser.name}}</h2>
-            <div>{{currentUser.address.street}}</div>
-            <div>{{currentUser.address.city}}</div>
-            <div>{{currentUser.address.zipcode}}</div>
-            <div><a href="mailto:{{currentUser.email}}">{{currentUser.email}}</a></div>
-            <div><a href="tel:{{currentUser.phoneNo}}">{{currentUser.phoneNo}}</a></div>
+            <div class="row">
+                <div class="col">
+                    <div>Bill to :- </div><br>
+                    <h2>{{currentUser.name}}</h2>
+                    <div>{{currentUser.address.street}}</div>
+                    <div>{{currentUser.address.city}}</div>
+                    <div>{{currentUser.address.zipcode}}</div>
+                    <div><a href="mailto:{{currentUser.email}}">{{currentUser.email}}</a></div>
+                    <div><a href="tel:{{currentUser.phoneNo}}">{{currentUser.phoneNo}}</a></div>
+                </div>
+                <div class="col">
+                    <div>Invoice No :- {{invoiceNo}}</div>
+                    <div>{{date | date:'mediumDate'}}</div>
+                    <div>{{date | date:'shortTime'}}</div>
+                </div>
+            </div>
         </div>
         <div>
             <table class="table">

@@ -1,6 +1,38 @@
 <div class="container">
     <div class="position-absolute top-50 start-50 translate-middle">
-        <h1>Payment Gateway</h1>
-        <button class="btn btn-warning" (click)="generateBill()">Click me to pay now</button>
+        <div class="card">
+            <div class="card-header">
+                <h1>Payment Gateway</h1>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group spacing">
+                        <input type="number" class="form-control" formControlName="cardNo" name="cardNo"
+                            placeholder="Card No">
+                    </div>
+                    <div class="spacing">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <input type="month" class="form-control" formControlName="expiry" name="expiry">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" formControlName="cvv" name="cvv"
+                                        placeholder="cvv">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group spacing">
+                        <input type="text" name="nameOnCard" formControlName="nameOnCard"
+                            class="form-control" placeholder="Name on Card">
+                    </div>
+                    <br>
+                    <button class="btn btn-warning" type="submit" style="float: right;">Pay {{payment | currency:'INR'}}</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

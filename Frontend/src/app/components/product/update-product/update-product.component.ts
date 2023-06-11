@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Cuisine } from 'src/app/model/cuisine';
 import { Product } from 'src/app/model/product';
@@ -14,6 +15,7 @@ export class UpdateProductComponent implements OnInit {
   product: Product;
   id: number;
   cuisines:Cuisine[]=[];
+  cuisineControl:FormControl;
 
   constructor(
     private productService: ProductService,
@@ -29,6 +31,8 @@ export class UpdateProductComponent implements OnInit {
       data => this.product = data,
       err => console.log("This is error ",err)
     );
+
+    this.cuisineControl = new FormControl('');
 
     this.cuisineService.getAllCuisine().subscribe(
       data => this.cuisines = data,
@@ -47,6 +51,7 @@ export class UpdateProductComponent implements OnInit {
   }
 
   onSubmit() {
+    this.product.cuisine = this.cuisineControl.value;
     this.updateProduct(this.id,this.product);
   }
 

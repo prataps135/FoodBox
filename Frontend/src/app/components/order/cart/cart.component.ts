@@ -40,9 +40,11 @@ export class CartComponent implements OnInit,AfterContentInit{
 
   removeUnwantedProducts() {
     for (let product of this.cartProducts) {
-      if (product.counter == 0 || product.counter <= 0) {
+      if (product.counter === 0 || product.counter <= 0) {
         let index = this.cartProducts.indexOf(product);
-        this.cartProducts.splice(index,index);
+         this.cartProducts = this.cartProducts.filter(
+          (products) => products != product 
+          );
       }
     }
   }

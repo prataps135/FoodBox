@@ -38,8 +38,9 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit() {
+    // console.log(this.product.cuisine);
+
     this.addProduct(this.product);
-    // this.router.navigate([]);
     this.router.navigate(['product-list']);
   }
 }

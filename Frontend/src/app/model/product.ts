@@ -6,7 +6,7 @@ export class Product {
     description: string;
     price: number;
     imgSource: string;
-    cuisine:Cuisine;
+    cuisine:string;
     counter:number;
 }
 

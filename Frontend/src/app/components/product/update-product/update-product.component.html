@@ -19,8 +19,8 @@
         </div><br>
         <div class="form-group">
             <label for="cuisine" class="form-label">Cuisine</label>
-            <select name="cuisine" id="" class="form-select" [(ngModel)]="product.cuisine">
-                <option value="{{cuisine}}" *ngFor="let cuisine of cuisines">{{cuisine.cuisineName}}</option>
+            <select name="cuisineControl" class="form-control" [formControl]="cuisineControl">
+                <option [value]="cuisine.cuisineName" *ngFor="let cuisine of cuisines">{{cuisine.id}} {{cuisine.cuisineName}}</option>
             </select>
         </div>
         <br>

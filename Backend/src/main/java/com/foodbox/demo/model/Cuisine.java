@@ -2,6 +2,7 @@ package com.foodbox.demo.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,11 +17,12 @@ public class Cuisine {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	@Column
 	private String cuisineName;
 	
-	@OneToMany
-	@JoinColumn(name="product_id")
-	private List<Product> product;
+//	@OneToMany
+//	@JoinColumn(name="product_id")
+//	private List<Product> product;
 	
 	public Cuisine() {
 		

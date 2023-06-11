@@ -16,7 +16,16 @@
         <div class="form-group">
             <label for="price" class="form-label">Price</label>
             <input type="text" class="form-control" name="price" [(ngModel)]="product.price">
-        </div><br>
+        </div>
+        <div class="form-group">
+            <label for="cuisnie" class="form-label">Cuisine</label>
+            <select name="cuisine" class="form-control" [(ngModel)]="product.cuisine">
+                <option [value]="cuisine.cuisineName" *ngFor="let cuisine of cuisines">
+                    {{cuisine.id}} {{cuisine.cuisineName}}
+                </option>
+            </select>
+        </div>
+        <br>
         <button class="btn btn-success" type="submit">Submit</button>
     </form>
 </div>
