@@ -7,5 +7,5 @@ import com.foodbox.demo.model.Product;
 
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Integer>{
-
+	Product findByName(String name);
 }

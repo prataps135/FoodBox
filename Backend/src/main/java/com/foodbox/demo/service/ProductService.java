@@ -13,4 +13,5 @@ public interface ProductService {
 	Product updateProduct(int pid, Product product);
 	Product getById(int pid);
 	Product deleteProduct(int pid);
+	Product getByName(String name);
 }

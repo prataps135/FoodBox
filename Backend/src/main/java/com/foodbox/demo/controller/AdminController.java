@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.foodbox.demo.exception.AdminAlreadyExistsException;
+import com.foodbox.demo.exception.AdminNotFoundException;
 import com.foodbox.demo.model.Admin;
 import com.foodbox.demo.service.AdminService;
 
@@ -38,22 +40,33 @@ public class AdminController {
 
 	@CrossOrigin
 	@PostMapping(value = "/admin")
-	public ResponseEntity<Admin> addAdmin(@Valid @RequestBody Admin admin) {
+	public ResponseEntity<Admin> addAdmin(@Valid @RequestBody Admin admin) throws Exception {
+		String email = admin.getEmail();
+		if (email != null && !"".equals(email)) {
+			Admin existingAdmin = adminService.getByEmail(email);
+			if (existingAdmin != null) {
+				throw new AdminAlreadyExistsException();
+			}
+		}
 		Admin newAdmin = adminService.addAdmin(admin);
 		return new ResponseEntity<Admin>(newAdmin, HttpStatus.OK);
 	}
 
 	@CrossOrigin
 	@GetMapping(value = "/admin/email/{email}")
-	public ResponseEntity<Admin> getByEmail(@PathVariable String email) {
+	public ResponseEntity<Admin> getByEmail(@PathVariable String email) throws Exception {
 		Admin admin = adminService.getByEmail(email);
+		if (admin == null)
+			throw new AdminNotFoundException();
 		return new ResponseEntity<Admin>(admin, HttpStatus.OK);
 	}
 
 	@CrossOrigin
 	@GetMapping(value = "/admin/id/{id}")
-	public ResponseEntity<Admin> getById(@PathVariable int id) {
+	public ResponseEntity<Admin> getById(@PathVariable int id) throws Exception {
 		Admin admin = adminService.getById(id);
+		if (admin == null)
+			throw new AdminNotFoundException();
 		return new ResponseEntity<Admin>(admin, HttpStatus.OK);
 	}
 

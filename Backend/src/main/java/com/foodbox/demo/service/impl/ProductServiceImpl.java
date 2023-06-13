@@ -56,4 +56,10 @@ public class ProductServiceImpl implements ProductService{
 		}
 		return product;
 	}
+
+	@Override
+	public Product getByName(String name) {
+		Product product = productRepo.findByName(name);
+		return product;
+	}
 }

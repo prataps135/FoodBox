@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.foodbox.demo.exception.UserAlreadyExistsException;
+import com.foodbox.demo.exception.UserNotFoundException;
 import com.foodbox.demo.model.User;
 import com.foodbox.demo.service.UserService;
 
@@ -30,29 +33,40 @@ public class UserController {
 
 	@CrossOrigin
 	@GetMapping(value = "/user")
-	public List<User> getAllUsers() {
+	public ResponseEntity<List<User>> getAllUsers() {
 		List<User> users = userService.getAllUsers();
-		return users;
+		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
 	}
 
 	@CrossOrigin
 	@PostMapping(value = "/user")
-	public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
+	public ResponseEntity<User> addUser(@Valid @RequestBody User user) throws Exception{
+		String email = user.getEmail();
+		if(email != null && !"".equals(email)) {
+			User existingUser = userService.getByEmail(email);
+			if(existingUser != null) {
+				throw new UserAlreadyExistsException();
+			}
+		}
 		User newUser = userService.addUser(user);
 		return new ResponseEntity<User>(newUser, HttpStatus.OK);
 	}
 
 	@CrossOrigin
 	@GetMapping(value = "/user/email/{email}")
-	public ResponseEntity<User> getByEmail(@PathVariable String email) {
+	public ResponseEntity<User> getByEmail(@PathVariable String email) throws Exception{
 		User user = userService.getByEmail(email);
+		if(user == null)
+			throw new UserNotFoundException();
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
 	@CrossOrigin
 	@GetMapping(value = "/user/id/{id}")
-	public ResponseEntity<User> getById(@PathVariable int id) {
+	public ResponseEntity<User> getById(@PathVariable int id) throws Exception{
 		User user = userService.getById(id);
+		if(user == null)
+			throw new UserNotFoundException();
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.foodbox.demo.exception.ProductAlreadyExistsException;
+import com.foodbox.demo.exception.ProductNotFoundException;
 import com.foodbox.demo.model.Product;
 import com.foodbox.demo.service.ProductService;
 
@@ -38,15 +40,24 @@ public class ProductController {
 
 	@CrossOrigin
 	@PostMapping(value = "/product")
-	public ResponseEntity<Product> addProduct(@Valid @RequestBody Product newProduct) {
-		Product product = productService.addProduct(newProduct);
-		return new ResponseEntity<Product>(product, HttpStatus.OK);
+	public ResponseEntity<Product> addProduct(@Valid @RequestBody Product product) throws Exception{
+		String productName = product.getName();
+		if(productName != null && !"".equals(productName)) {
+			Product existingProduct = productService.getByName(productName);
+			if(existingProduct != null) {
+				throw new ProductAlreadyExistsException();
+			}
+		}
+		Product newProduct = productService.addProduct(product);
+		return new ResponseEntity<Product>(newProduct, HttpStatus.OK);
 	}
 
 	@CrossOrigin
 	@GetMapping(value="/product/{pid}")
-	public ResponseEntity<Product> getById(@PathVariable int pid){
+	public ResponseEntity<Product> getById(@PathVariable int pid) throws Exception{
 		Product product = productService.getById(pid);
+		if(product == null)
+			throw new ProductNotFoundException();
 		return new ResponseEntity<Product>(product,HttpStatus.OK);
 	}
 	
