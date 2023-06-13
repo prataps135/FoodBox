@@ -8,10 +8,10 @@
             <div *ngIf="auth==='Admin'">
                 <a routerLink="portel" (click)="clickHandler()" routerLinkActive="active">Portel</a>
             </div>
-            <a routerLink="about" (click)="clickHandler()" routerLinkActive="active">About</a>
+            <!-- <a routerLink="about" (click)="clickHandler()" routerLinkActive="active">About</a> -->
             <a routerLink="login" (click)="clickHandler()" routerLinkActive="active">Login</a>
             <a routerLink="user-registration" (click)="clickHandler()" routerLinkActive="active">Sign Up</a>
-            <a routerLink="contact" (click)="clickHandler()" routerLinkActive="active">Contact</a>
+            <!-- <a routerLink="contact" (click)="clickHandler()" routerLinkActive="active">Contact</a> -->
             <span *ngIf="auth === 'User'">
                 <a routerLink="cart" (click)="clickHandler()"
                     routerLinkActive="active"><mat-icon>shopping_cart</mat-icon></a>
@@ -27,10 +27,10 @@
                 <nav>
                     <a routerLink="home" routerLinkActive="active">Home</a>
                     <a routerLink="portel" routerLinkActive="active" *ngIf="auth==='Admin'">Portel</a>
-                    <a routerLink="about" routerLinkActive="active">About</a>
+                    <!-- <a routerLink="about" routerLinkActive="active">About</a> -->
                     <a routerLink="login" routerLinkActive="active">Login</a>
                     <a routerLink="user-registration" routerLinkActive="active">Sign Up</a>
-                    <a routerLink="contact" routerLinkActive="active">Contact</a>
+                    <!-- <a routerLink="contact" routerLinkActive="active">Contact</a> -->
                     <span *ngIf="auth === 'User'">
                         <a class="icon" routerLink="cart" routerLinkActive="active">Cart</a>
                     </span>

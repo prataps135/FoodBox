@@ -36,6 +36,7 @@ import { PaymentComponent } from './components/order/payment/payment.component';
 import { BillComponent } from './components/order/bill/bill.component';
 import { PaymentService } from './services/payment.service';
 import { OrderService } from './services/order.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { OrderService } from './services/order.service';
     ConfirmationComponent,
     PaymentComponent,
     BillComponent,
+    FooterComponent,
 
   ],
   imports: [
