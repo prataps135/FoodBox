@@ -1,7 +1,9 @@
 import { Component,OnInit } from '@angular/core';
+import { NgControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Admin } from 'src/app/model/admin';
 import { AdminService } from 'src/app/services/admin.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-update-admin',
@@ -15,7 +17,8 @@ export class UpdateAdminComponent implements OnInit{
   constructor(
     private adminService:AdminService,
     private router:Router,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private notificationService:NotificationService
   ){}
 
   ngOnInit(): void {
@@ -23,20 +26,29 @@ export class UpdateAdminComponent implements OnInit{
     this.id = this.activatedRoute.snapshot.params['id'];
 
     this.adminService.getById(this.id).subscribe(
-      data => this.admin = data,
-      err => console.log("This is error",err)
+      data => {
+        this.admin = data;
+        this.notificationService.showInfo("Admin details fetched","Foodbox");
+      },
+      err => this.notificationService.showError("Can't able to fetch admin","Foodbox")
     );
       
   }
 
   updateAdmin(id:number,admin:Admin){
     this.adminService.updateAdmin(id,admin).subscribe(
-      data => alert("Admin update successfully!!"),
-      err => console.log("This is error",err)
+      data => this.notificationService.showSuccess("Admin update successfully","Foodbox"),
+      err => this.notificationService.showWarning("Can't able to update","Foodbox")
     );
   }
   onSubmit(){
+    // console.log(name,email,password);
+    // console.log(this.admin);
+
     this.updateAdmin(this.id,this.admin);
-    // this.router.navigate(['admin-list']);
+    setTimeout(() => {
+      this.router.navigate(['admin-list']);
+    }, 3000);
+    
   } 
 }

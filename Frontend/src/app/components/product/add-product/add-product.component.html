@@ -1,29 +1,44 @@
 <div class="container">
     <h1 class="text-center">Add Product</h1>
-    <form (ngSubmit)="onSubmit()">
+    <form ngForm #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="form-group">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" [(ngModel)]="product.name">
+            <input type="text" class="form-control" name="name" [(ngModel)]="product.name" #name="ngModel" required>
+            <div class="alert alert-danger" *ngIf="name.invalid && name.touched">
+                <p *ngIf="name.errors?.['required']">Name is required</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="description" class="form-label">Description</label>
-            <input type="text" class="form-control" name="description" [(ngModel)]="product.description">
+            <input type="text" class="form-control" name="description" [(ngModel)]="product.description" #description="ngModel" required>
+            <div class="alert alert-danger" *ngIf="description.invalid && description.touched">
+                <p *ngIf="description.errors?.['required']">Description is required</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="imgSource" class="form-label">Image Url</label>
-            <input type="text" class="form-control" name="imgSource" [(ngModel)]="product.imgSource">
+            <input type="text" class="form-control" name="imgSource" [(ngModel)]="product.imgSource" #img="ngModel" required>
+            <div class="alert alert-danger" *ngIf="img.invalid && img.touched">
+                <p *ngIf="img.errors?.['required']">Image is required</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="price" class="form-label">Price</label>
-            <input type="text" class="form-control" name="price" [(ngModel)]="product.price">
+            <input type="text" class="form-control" name="price" [(ngModel)]="product.price" #price="ngModel" required>
+            <div class="alert alert-danger" *ngIf="price.invalid && price.touched">
+                <p *ngIf="price.errors?.['required']">Price is required</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="cuisnie" class="form-label">Cuisine</label>
-            <select name="cuisine" class="form-control" [(ngModel)]="product.cuisine">
+            <select name="cuisine" class="form-control" [(ngModel)]="product.cuisine" #cuisine="ngModel" required>
                 <option [value]="cuisine.cuisineName" *ngFor="let cuisine of cuisines">
                     {{cuisine.id}} {{cuisine.cuisineName}}
                 </option>
             </select>
+            <div class="alert alert-danger" *ngIf="cuisine.invalid && cuisine.touched">
+                <p *ngIf="cuisine.errors?.['required']">Cuisine is required</p>
+            </div>
         </div>
         <br>
         <button class="btn btn-success" type="submit">Submit</button>

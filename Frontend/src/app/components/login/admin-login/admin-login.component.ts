@@ -4,6 +4,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -17,14 +18,23 @@ export class AdminLoginComponent implements OnInit {
   constructor(
     private adminService: AdminService,
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
     // this.admin = new Admin();
     this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      email: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(30)
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(30)
+      ])
     });
 
     // console.log(this.loginForm.get('email'));
@@ -32,7 +42,7 @@ export class AdminLoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.invalid) {
-      alert("Email and password required");
+      this.notificationService.showError("Email and password required", "Foodbox");
     } else {
       this.checkingAdmin();
     }
@@ -45,19 +55,19 @@ export class AdminLoginComponent implements OnInit {
       data => {
         this.admin = data;
         if (this.admin === null || this.admin === undefined) {
-          alert("Email or Password invalid");
+          this.notificationService.showError("Email or Password invalid", "Foodbox");
         } else {
           if (this.admin.password === password) {
             this.authService.setAuth("Admin");
-            alert("login successful!");
+            this.notificationService.showSuccess("login successful!", "Foodbox");
             this.router.navigate(['home']);
           }
           else {
-            alert("Email or Password invalid");
+            this.notificationService.showError("Email or Password invalid", "Foodbox");
           }
         }
       },
-      err => console.log('This is error ', err)
+      err => this.notificationService.showError("Email or Password invalid", "Foodbox")
     );
 
 

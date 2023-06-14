@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cuisine } from 'src/app/model/cuisine';
 import { Product } from 'src/app/model/product';
 import { CuisineService } from 'src/app/services/cuisine.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -17,7 +19,8 @@ export class AddProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private cuisineService: CuisineService
+    private cuisineService: CuisineService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -29,18 +32,25 @@ export class AddProductComponent implements OnInit {
 
   addProduct(product: Product) {
     this.productService.addProduct(product).subscribe(
-      data => alert("Product added successfully!"),
+      data => this.notificationService.showSuccess("Product added successfully", "Foodbox"),
       err => {
-        alert("Can't able to add product");
-        console.log(err)
+        this.notificationService.showWarning("Can't able to add product", "Foodbox");
+        console.log(err);
       }
     );
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     // console.log(this.product.cuisine);
+    // console.log(form)
 
-    this.addProduct(this.product);
-    this.router.navigate(['product-list']);
+    if (form.invalid) {
+      this.notificationService.showError("Please fill details properly", "Foodbox");
+    } else {
+      this.addProduct(this.product);
+      setTimeout(() => {
+        this.router.navigate(['product-list']);
+      }, 3000);
+    }
   }
 }

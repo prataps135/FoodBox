@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Admin } from 'src/app/model/admin';
 import { AdminService } from 'src/app/services/admin.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-admin-list',
@@ -13,7 +14,8 @@ export class AdminListComponent implements OnInit{
   
   constructor(
     private adminService:AdminService,
-    private router:Router
+    private router:Router,
+    private notificationService:NotificationService
   ){}
 
   ngOnInit(): void {
@@ -27,8 +29,13 @@ export class AdminListComponent implements OnInit{
   }
   deleteAdmin(id:number){
     this.adminService.deleteAdmin(id).subscribe(
-      data => alert("Admin deleted successfully!!"),
-      err => console.log("This is error",err)
+      data => {
+        this.notificationService.showSuccess("Admin deleted successfully","Foodbox");
+        setTimeout(() => {
+          this.router.navigate(['admin-list']);
+        },3000);
+      } ,
+      err => this.notificationService.showWarning("Can't able to delete",'Foodbox')
     );
   }
 }

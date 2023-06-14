@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
+import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class UserListComponent implements OnInit{
 
   constructor(
     private userService:UserService,
-    private router:Router
+    private router:Router,
+    private notificationService:NotificationService
   ){}
 
   ngOnInit(): void {
@@ -30,8 +32,13 @@ export class UserListComponent implements OnInit{
 
   deleteUser(id:number){
     this.userService.deleteUser(id).subscribe(
-      data => alert("User deleted successfully!!"),
-      err => console.log("this is error",err)
+      data => {
+        this.notificationService.showSuccess("User deleted successfully","Foodbox")
+        setTimeout(() =>{
+          this.router.navigate(['user-list']);
+        },3000);
+      },
+      err => this.notificationService.showWarning("Can't able to delete","Foodbox")
     );
   }
 

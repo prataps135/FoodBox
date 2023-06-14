@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/model/user';
+import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,33 +14,49 @@ export class UserRegistrationComponent implements OnInit {
   userForm: FormGroup;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
     this.user = new User();
     this.userForm = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl(''),
-      password: new FormControl(''),
-      phoneNo: new FormControl(''),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
+      email: new FormControl('',[
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(30)
+      ]),
+      password: new FormControl('',[
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(30)
+      ]),
+      phoneNo: new FormControl('',Validators.required),
       address: new FormGroup({
-        street: new FormControl(''),
-        city: new FormControl(''),
-        zipcode: new FormControl('')
+        street: new FormControl('',Validators.required),
+        city: new FormControl('',Validators.required),
+        zipcode: new FormControl('',Validators.required)
       })
     });
   }
 
   onSubmit() {
-    this.setUserValue();
-    this.addUser(this.user);
+    if (this.userForm.invalid) {
+      this.notificationService.showWarning("Can't able to add user", "Foodbox");
+    } else {
+      this.setUserValue();
+      this.addUser(this.user);
+    }
   }
 
   addUser(user: User): void {
     this.userService.addUser(user).subscribe(
-      data => alert("User added successfully!!"),
-      err => console.log("This is error", err)
+      data => this.notificationService.showSuccess("User added successfully", "Foodbox"),
+      err => this.notificationService.showWarning("Can't able to add user", "Foodbox")
     );
   }
 
@@ -69,5 +86,17 @@ export class UserRegistrationComponent implements OnInit {
 
   get address() {
     return this.userForm.get('address');
+  }
+
+  get street(){
+    return this.address?.get('street');
+  }
+
+  get city(){
+    return this.address?.get('city');
+  }
+
+  get zipcode(){
+    return this.address?.get('zipcode');
   }
 }

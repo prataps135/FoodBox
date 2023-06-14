@@ -37,6 +37,8 @@ import { BillComponent } from './components/order/bill/bill.component';
 import { PaymentService } from './services/payment.service';
 import { OrderService } from './services/order.service';
 import { FooterComponent } from './components/footer/footer.component';
+import { NotificationService } from './services/notification.service';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -64,6 +66,7 @@ import { FooterComponent } from './components/footer/footer.component';
     PaymentComponent,
     BillComponent,
     FooterComponent,
+    
 
   ],
   imports: [
@@ -73,7 +76,13 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserAnimationsModule,
     AppMaterailModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 3000, // 3 seconds
+      progressBar: true,
+      preventDuplicates:true
+    })
   ],
   providers: [
     ProductService,
@@ -83,7 +92,8 @@ import { FooterComponent } from './components/footer/footer.component';
     CartService,
     CuisineService,
     PaymentService,
-    OrderService
+    OrderService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

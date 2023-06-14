@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class UpdateUserComponent implements OnInit, OnDestroy{
     private userService: UserService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private authService:AuthenticationService
+    private authService:AuthenticationService,
+    private notificationService:NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +38,10 @@ export class UpdateUserComponent implements OnInit, OnDestroy{
 
   getUserDetails(id: number): void {
     this.userService.getByid(id).subscribe(
-      data => this.user = data,
+      data => {
+        this.user = data;
+        // this.notificationService.showInfo("User details fetched","Foodbox");
+      },
       err => console.log("This is error", err)
     );
   }
@@ -59,16 +64,20 @@ export class UpdateUserComponent implements OnInit, OnDestroy{
   onSubmit() {
     this.setUserValue();
     this.updateUser(this.id, this.user);
+    setTimeout(() => {
+      this.router.navigate(['user-list']);
+    }, 3000);
   }
 
   fetchUser() {
     this.userFormInit();
+    this.notificationService.showInfo("User details fetched","Foodbox");
   }
 
   updateUser(id: number, user: User) {
     this.userService.updateUser(id, user).subscribe(
-      data => alert("User updated successfully"),
-      err => console.log("This is error", err)
+      data => this.notificationService.showSuccess("User updated successfully","Foodbox"),
+      err => this.notificationService.showWarning("Can't able to update","Foodbox")
     );
   }
 

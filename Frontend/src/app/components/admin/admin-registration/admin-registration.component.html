@@ -1,21 +1,43 @@
 <h1 class="text-center">Admin Registration</h1>
 <div class="container">
-    <form (ngSubmit)="onSubmit()">
+    <form #form="ngForm"  (ngSubmit)="onSubmit(form)">
         <div class="form-group">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" [(ngModel)]="admin.name">
+            <input type="text"
+                class="form-control" 
+                name="name" 
+                [(ngModel)]="admin.name" 
+                #name="ngModel"
+                required>
+            <div class="alert alert-danger" *ngIf="name.invalid && name.touched">
+                <p *ngIf="name.errors?.['required']">Name is Required</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control" name="email" [(ngModel)]="admin.email">
+            <input type="email" 
+                class="form-control" 
+                name="email" 
+                [(ngModel)]="admin.email"
+                #email="ngModel"
+                required>
+            <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                <p *ngIf="email.errors?.['required']">Email is Required</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="admin.password">
+            <input type="password" class="form-control" name="password" [(ngModel)]="admin.password" required #password="ngModel">
+            <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+                <p *ngIf="password.errors?.['required']">Password is Required</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="phoneNo" class="form-label">Phone No</label>
-            <input type="text" class="form-control" name="name" [(ngModel)]="admin.phoneNo">
+            <input type="number" class="form-control" name="name" [(ngModel)]="admin.phoneNo" required #phone="ngModel">
+            <div class="alert alert-danger" *ngIf="phone.invalid && phone.touched">
+                <p *ngIf="phone.errors?.['required']">Phone no is Required</p>
+            </div>
         </div><br>
         <button class="btn btn-success" type="submit">Submit</button>
     </form>
