@@ -5,18 +5,37 @@
         <div class="form-group">
             <label for="name" class="form-label">Name</label>
             <input type="text" formControlName="name" name="name" class="form-control">
+            <div class="alert alert-danger" *ngIf="name?.invalid && name?.touched">
+                <p *ngIf="name?.errors?.['required']">Name is required</p>
+                <p *ngIf="name?.errors?.['minlength']">Name have atleast 5 characters</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="email" class="form-label">Email</label>
             <input type="email" formControlName="email" name="email" class="form-control">
+            <div class="alert alert-danger" *ngIf="email?.touched && email?.invalid">
+                <p *ngIf="email?.errors?.['required']">Email is required</p>
+                <p *ngIf="email?.errors?.['minlength']">Email should have atleast 8 characters</p>
+                <p *ngIf="email?.errors?.['maxlength']">Email have maximum 30 characters</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="password" class="form-label">Password</label>
             <input type="text" formControlName="password" name="password" class="form-control">
+            <div class="alert alert-danger" *ngIf="email?.touched && email?.invalid">
+                <p *ngIf="password?.errors?.['required']">Password is required</p>
+                <p *ngIf="password?.errors?.['minlength']">Password should have atleast 8 characters</p>
+                <p *ngIf="password?.errors?.['maxlength']">Password have maximum 30 characters</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="phoneNo" class="form-label">Phone No</label>
             <input type="number" formControlName="phoneNo" name="phoneNo" class="form-control">
+            <div class="alert alert-danger" *ngIf="phoneNo?.invalid && phoneNo?.touched">
+                <p *ngIf="phoneNo?.errors?.['required']">Phone no is required</p>
+                <p *ngIf="phoneNo?.errors?.['min']">Minimum allowed {{phoneNo?.errors?.['min'].min}}</p>
+                <p *ngIf="phoneNo?.errors?.['max']">Maximum allowed {{phoneNo?.errors?.['max'].max}}</p>
+            </div>
         </div><br>
 
         <fieldset formGroupName="address">
@@ -25,14 +44,25 @@
                 <div class="form-group">
                     <label for="street" class="form-label">Street</label>
                     <input type="text" formControlName="street" name="street" class="form-control">
+                    <div class="alert alert-danger" *ngIf="street?.invalid && street?.touched">
+                        <p *ngIf="street?.errors?.['required']">Street is required</p>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="city" class="form-label">City</label>
                     <input type="text" formControlName="city" name="city" class="form-control">
+                    <div class="alert alert-danger" *ngIf="city?.invalid && city?.touched">
+                        <p *ngIf="city?.errors?.['required']">City is required</p>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="zipcode" class="form-label">Zipcode</label>
                     <input type="number" formControlName="zipcode" name="zipcode" class="form-control">
+                    <div class="alert alert-danger" *ngIf="zipcode?.invalid && zipcode?.touched">
+                        <p *ngIf="zipcode?.errors?.['required']">Zipcode is required</p>
+                        <p *ngIf="zipcode?.errors?.['min']">Minimum allowed {{zipcode?.errors?.['min'].min}}</p>
+                        <p *ngIf="zipcode?.errors?.['max']">Maximum allowed {{zipcode?.errors?.['max'].max}}</p>
+                    </div>
                 </div>
             </div>
         </fieldset>

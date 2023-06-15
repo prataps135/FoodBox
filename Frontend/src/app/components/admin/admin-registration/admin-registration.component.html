@@ -33,10 +33,12 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="phoneNo" class="form-label">Phone No</label>
-            <input type="number" class="form-control" name="name" [(ngModel)]="admin.phoneNo" required #phone="ngModel">
+            <label for="phoneNo" class="form-label" >Phone No</label>
+            <input type="number" class="form-control" name="phoneNo" [(ngModel)]="admin.phoneNo" required #phone="ngModel" min="1000000000" max="9999999999">
             <div class="alert alert-danger" *ngIf="phone.invalid && phone.touched">
                 <p *ngIf="phone.errors?.['required']">Phone no is Required</p>
+                <p *ngIf="phone.errors?.['min']">Minimun allowed {{phone.errors?.['min'].min}}</p>
+                <p *ngIf="phone.errors?.['max']">Maximum allowed {{phone.errors?.['max'].max}}</p>
             </div>
         </div><br>
         <button class="btn btn-success" type="submit">Submit</button>

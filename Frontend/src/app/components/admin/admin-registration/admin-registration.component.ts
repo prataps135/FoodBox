@@ -24,6 +24,7 @@ export class AdminRegistrationComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    // console.log(form);
     if (form.invalid) {
       this.notificationService.showError("Please fill details properly", "Foodbox");
     } else {

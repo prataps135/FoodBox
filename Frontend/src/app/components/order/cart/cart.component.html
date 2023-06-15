@@ -13,10 +13,13 @@
                 <tr *ngFor="let product of cartProducts">
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>
-                    <td><input type="number" class="form-control" name="counter" [(ngModel)]="product.counter"></td>
-                    <!-- <div>
-                        <p ngIf="counter.value" class="alert alert-danger">Not less than zero</p>
-                    </div> -->
+                    <td>
+                        <input type="number" class="form-control" name="counter" [(ngModel)]="product.counter" #counter="ngModel" min="1" max ="10">
+                        <div class="alert alert-danger" *ngIf="counter.invalid && counter.touched">
+                            <p *ngIf="counter.errors?.['min']">Minimum 1 qty</p>
+                            <p *ngIf="counter.errors?.['max']">Maximum 10 qty</p>
+                        </div>
+                    </td>
                     <td><input type="text" class="form-control" name="subTotal" #subTotal="ngModel" [(ngModel)]="product.price * product.counter" disabled ></td>
                 </tr>
                 <tr>

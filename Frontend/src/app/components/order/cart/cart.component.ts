@@ -1,5 +1,5 @@
 import { Component,Input,OnInit,AfterContentInit,ViewChild, ViewContainerRef,ComponentFactoryResolver } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, NgModel } from '@angular/forms';
 import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ConfirmationComponent } from '../confirmation/confirmation.component';
@@ -33,6 +33,7 @@ export class CartComponent implements OnInit,AfterContentInit{
   }
 
   onConfirm(){
+    // console.log(counter);
     this.removeUnwantedProducts();
     this.cartService.setFinalProductList(this.cartProducts);
     this.router.navigate(['order-confirmation']);
@@ -49,7 +50,7 @@ export class CartComponent implements OnInit,AfterContentInit{
     }
   }
   ngOnDestroy(){
-    console.log("Destroy called");
+    // console.log("Destroy called");
   }
 
   // confirmButtonFunction(){

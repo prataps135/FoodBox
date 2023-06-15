@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="form-group">
+        <label for="search" class="form-label"></label>
+        <div class="row">
+            <span class="col" style="padding-right: 1px;">
+                <input type="text" class="form-control" placeholder="Search" #searchKey>
+            </span>
+            <span class="col-md-auto" style="padding-left: 1px;">
+                <button class="btn" (click)="search(searchKey.value)"><i class="bi bi-search"></i></button>
+            </span>
+        </div>
+    </div>
+</div>

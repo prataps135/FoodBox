@@ -1,5 +1,5 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -49,14 +49,33 @@ export class UpdateUserComponent implements OnInit, OnDestroy{
   userFormInit() {
     console.log(this.user);
     this.userForm = new FormGroup({
-      name: new FormControl(this.user.name),
-      email: new FormControl(this.user.email),
-      password: new FormControl(this.user.password),
-      phoneNo: new FormControl(this.user.phoneNo),
+      name: new FormControl(this.user.name,[
+        Validators.required,
+        Validators.minLength(5)
+      ]),
+      email: new FormControl(this.user.email,[
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(30)
+      ]),
+      password: new FormControl(this.user.password,[
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(30)
+      ]),
+      phoneNo: new FormControl(this.user.phoneNo,[
+        Validators.required,
+        Validators.min(1000000000),
+        Validators.max(9999999999)
+      ]),
       address: new FormGroup({
-        street: new FormControl(this.user.address?.street),
-        city: new FormControl(this.user.address?.city),
-        zipcode: new FormControl(this.user.address?.zipcode)
+        street: new FormControl(this.user.address?.street,Validators.required),
+        city: new FormControl(this.user.address?.city,Validators.required),
+        zipcode: new FormControl(this.user.address?.zipcode,[
+          Validators.required,
+          Validators.min(100000),
+          Validators.max(999999)
+        ])
       })
     });
   }
@@ -110,4 +129,15 @@ export class UpdateUserComponent implements OnInit, OnDestroy{
     return this.userForm.get('address');
   }
 
+  get street(){
+    return this.address?.get('street');
+  }
+
+  get city(){
+    return this.address?.get('city');
+  }
+
+  get zipcode(){
+    return this.address?.get('zipcode');
+  }
 }

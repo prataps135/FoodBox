@@ -1,5 +1,21 @@
 <div class="container">
-    <div class="card floating-card" style="width: 18rem;" *ngFor="let product of product">
+    <!-- <app-search-bar [products]="product"></app-search-bar><hr> -->
+    <!-- Search bar begin-->
+    <div class="container">
+        <div class="form-group">
+            <label for="search" class="form-label"></label>
+            <div class="row">
+                <span class="col" style="padding-right: 1px;">
+                    <input type="text" class="form-control" placeholder="Search" #searchKey>
+                </span>
+                <span class="col-md-auto" style="padding-left: 1px;">
+                    <button class="btn" (click)="search(searchKey.value)"><i class="bi bi-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div><hr>
+    <!-- Search bar ends-->
+    <div class="card floating-card" style="width: 18rem;" *ngFor="let product of searchedProduct">
         <img class="card-img-top" src="{{product.imgSource}}" alt="Image loading...">
         <div class="card-body">
             <h3 class="card-title">{{product.name}}</h3>

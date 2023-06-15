@@ -48,6 +48,7 @@ const routes: Routes = [
   { path: 'user-login', component: UserLoginComponent },
   { path: 'admin-login', component: AdminLoginComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  
   { path: '**', component: HomeComponent }
 ];
 

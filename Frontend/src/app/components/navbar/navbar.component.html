@@ -16,6 +16,11 @@
                 <a routerLink="cart" (click)="clickHandler()"
                     routerLinkActive="active"><mat-icon>shopping_cart</mat-icon></a>
             </span>
+            <span *ngIf="auth === 'User' || auth === 'Admin'">
+                <button class="btn" type="button" (click)="logout()">
+                    <i class="bi bi-box-arrow-in-left"></i>
+                </button>
+            </span>
         </nav>
     </mat-sidenav>
 
@@ -33,6 +38,11 @@
                     <!-- <a routerLink="contact" routerLinkActive="active">Contact</a> -->
                     <span *ngIf="auth === 'User'">
                         <a class="icon" routerLink="cart" routerLinkActive="active">Cart</a>
+                    </span>
+                    <span *ngIf="auth === 'User' || auth === 'Admin'">
+                        <button class="btn" type="button" (click)="logout()">
+                            <i class="bi bi-box-arrow-in-left">logout</i>
+                        </button>
                     </span>
                 </nav>
             </header>

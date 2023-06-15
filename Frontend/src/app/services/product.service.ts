@@ -8,10 +8,13 @@ import { Product } from '../model/product';
 })
 export class ProductService {
   baseUrl: string = "http://localhost:1500/api/v1/product";
+  filteredProduct:Product[];
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) { 
+    
+  }
 
   getAllProduct(): Observable<Product[]> {
     return this.http.get<Product[]>(this.baseUrl);
@@ -31,6 +34,14 @@ export class ProductService {
 
   deleteProduct(pid:number):Observable<any>{
     return this.http.delete(`${this.baseUrl}/${pid}`);
+  }
+
+  setFilteredProduct(product:Product[]):void{
+    this.filteredProduct = product;
+  }
+
+  getFilteredProduct():Product[]{
+    return this.filteredProduct;
   }
 }
 

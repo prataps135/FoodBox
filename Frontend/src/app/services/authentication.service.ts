@@ -5,21 +5,21 @@ import { User } from '../model/user';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  auth: string;
-  currentUser:User;
-  // currentUser: User = {
-  //   id:100,
-  //   name:'Pratap Singh',
-  //   email:'prataps135@gmail.com',
-  //   password:'pratap@123',
-  //   phoneNo:7877696954,
-  //   address:{
-  //     id:101,
-  //     street:'jail road',
-  //     city:'Bikaner',
-  //     zipcode:994001
-  //   }
-  // };
+  auth: string ='User';
+  // currentUser:User;
+  currentUser: User = {
+    id:100,
+    name:'Pratap Singh',
+    email:'prataps135@gmail.com',
+    password:'pratap@123',
+    phoneNo:7877696954,
+    address:{
+      id:101,
+      street:'jail road',
+      city:'Bikaner',
+      zipcode:994001
+    }
+  };
   constructor() { }
 
   setAuth(auth: string): void {

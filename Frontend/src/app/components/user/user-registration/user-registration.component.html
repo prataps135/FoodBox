@@ -29,9 +29,11 @@
         </div>
         <div class="form-group">
             <label for="phoneNo" class="form-label">Phone No</label>
-            <input type="number" formControlName="phoneNo" name="phoneNo" class="form-control">
+            <input type="number" formControlName="phoneNo" name="phoneNo" class="form-control" min="1000000000" max="9999999999">
             <div class="alert alert-danger" *ngIf="phoneNo?.invalid && phoneNo?.touched">
                 <p *ngIf="phoneNo?.errors?.['required']">Phone no is required</p>
+                <p *ngIf="phoneNo?.errors?.['min']">Minimum allowed {{phoneNo?.errors?.['min'].min}}</p>
+                <p *ngIf="phoneNo?.errors?.['max']">Maximum allowed {{phoneNo?.errors?.['max'].max}}</p>
             </div>
         </div><br>
 
@@ -54,10 +56,12 @@
                 </div>
                 <div class="form-group">
                     <label for="zipcode" class="form-label">Zipcode</label>
-                    <input type="number" formControlName="zipcode" name="zipcode" class="form-control">
+                    <input type="number" formControlName="zipcode" name="zipcode" class="form-control" min="100000" max="999999">
                 </div>
                 <div class="alert alert-danger" *ngIf="zipcode?.invalid && zipcode?.touched">
                     <p *ngIf="zipcode?.errors?.['required']">Zipcode is required</p>
+                    <p *ngIf="zipcode?.errors?.['min']">Minimum allowed {{zipcode?.errors?.['min'].min}}</p>
+                    <p *ngIf="zipcode?.errors?.['max']">Maximum allowed {{zipcode?.errors?.['max'].max}}</p>
                 </div>
             </div>
         </fieldset>

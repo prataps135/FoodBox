@@ -35,18 +35,26 @@ export class UserRegistrationComponent implements OnInit {
         Validators.minLength(8),
         Validators.maxLength(30)
       ]),
-      phoneNo: new FormControl('',Validators.required),
+      phoneNo: new FormControl('',[
+        Validators.required,
+        Validators.min(1000000000),
+        Validators.max(9999999999)
+      ]),
       address: new FormGroup({
         street: new FormControl('',Validators.required),
         city: new FormControl('',Validators.required),
-        zipcode: new FormControl('',Validators.required)
+        zipcode: new FormControl('',[
+          Validators.required,
+          Validators.min(100000),
+          Validators.max(999999)
+        ])
       })
     });
   }
 
   onSubmit() {
     if (this.userForm.invalid) {
-      this.notificationService.showWarning("Can't able to add user", "Foodbox");
+      this.notificationService.showError("Please fill details properly", "Foodbox");
     } else {
       this.setUserValue();
       this.addUser(this.user);
