@@ -39,7 +39,6 @@ import { OrderService } from './services/order.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotificationService } from './services/notification.service';
 import { ToastrModule } from 'ngx-toastr';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 
 @NgModule({
@@ -67,9 +66,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     PaymentComponent,
     BillComponent,
     FooterComponent,
-    SearchBarComponent,
-    
-
+  
   ],
   imports: [
     BrowserModule,

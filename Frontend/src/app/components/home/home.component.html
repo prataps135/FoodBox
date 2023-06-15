@@ -13,16 +13,34 @@
                 </span>
             </div>
         </div>
-    </div><hr>
+    </div>
+    <hr>
     <!-- Search bar ends-->
+
+    <!-- Cuisine menu start-->
+    <!-- <app-cuisine-menu></app-cuisine-menu> -->
+    <div class="container">
+        <h2>Popular Cuisines</h2>
+
+        <div class="row">
+            <div *ngFor="let cuisine of cuisine" style="max-width: fit-content;">
+                <div>
+                    <button class="btn" (click)="cuisnieFilter(cuisine)"> {{cuisine.cuisineName}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cuisine menu ends -->
+
+    <hr>
     <div class="card floating-card" style="width: 18rem;" *ngFor="let product of searchedProduct">
         <img class="card-img-top" src="{{product.imgSource}}" alt="Image loading...">
         <div class="card-body">
             <h3 class="card-title">{{product.name}}</h3>
             <p>Price {{product.price | currency:'INR'}}/-</p>
             <p class="card-text">{{product.description}}</p>
-            <button class="btn btn-primary" *ngIf="auth==='User'"
-                (click)="addProductToCart(product)">Add to Cart</button>
+            <button class="btn btn-primary" *ngIf="auth==='User'" (click)="addProductToCart(product)">Add to
+                Cart</button>
         </div>
     </div>
 </div>

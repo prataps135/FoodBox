@@ -1,7 +1,9 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
+import { Cuisine } from 'src/app/model/cuisine';
 import { Product } from 'src/app/model/product';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
+import { CuisineService } from 'src/app/services/cuisine.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -14,12 +16,15 @@ export class HomeComponent implements OnInit {
   product: Product[];
   searchedProduct: Product[];
   auth: string;
+  cuisine:Cuisine[];
+
 
   constructor(
     private productService: ProductService,
     private authService: AuthenticationService,
     private cartService: CartService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private cuisineService:CuisineService
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +37,9 @@ export class HomeComponent implements OnInit {
     );
     this.auth = this.authService.getAuth();
 
+    this.cuisineService.getAllCuisine().subscribe(
+      data => this.cuisine = data
+    );
   }
 
   addProductToCart(product: Product) {
@@ -45,6 +53,12 @@ export class HomeComponent implements OnInit {
     }
     this.searchedProduct = this.product.filter(
       product => product.name.toLowerCase().includes(key.toLowerCase())
+    );
+  }
+
+  cuisnieFilter(cuisine:Cuisine){
+    this.searchedProduct = this.product.filter(
+      product => product.cuisine.includes(cuisine.cuisineName)
     );
   }
 }

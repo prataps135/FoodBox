@@ -5,7 +5,7 @@ import { User } from '../model/user';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  auth: string ='User';
+  auth: string = 'User';
   // currentUser:User;
   currentUser: User = {
     id:100,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Card } from 'src/app/model/card';
+import { NotificationService } from 'src/app/services/notification.service';
 import { PaymentService } from 'src/app/services/payment.service';
 
 @Component({
@@ -12,24 +13,35 @@ import { PaymentService } from 'src/app/services/payment.service';
 export class PaymentComponent implements OnInit {
   payment: number;
   paymentForm: FormGroup;
-  paymentDetails : Card;
+  paymentDetails: Card;
+  allCardDetails: any[] = [];
+  paymentStatus: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private paymentService:PaymentService
+    private paymentService: PaymentService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
     this.paymentDetails = new Card;
     this.payment = this.activatedRoute.snapshot.params['amount'];
-
+    this.paymentStatus = false;
     this.paymentForm = new FormGroup({
       cardNo: new FormControl(''),
       expiry: new FormControl(''),
       nameOnCard: new FormControl(''),
       cvv: new FormControl(''),
     });
+
+    this.paymentService.getAllCardsDetail().subscribe(
+      data => {
+        this.allCardDetails = data,
+          console.log(data)
+      },
+      err => console.log(err)
+    );
   }
 
   generateBill() {
@@ -39,11 +51,26 @@ export class PaymentComponent implements OnInit {
   onSubmit() {
     this.setPayDetails();
     this.paymentService.setPaymentDetails(this.paymentDetails);
-    this.router.navigate(['bill']);
-    // console.log(this.paymentService.getPaymentDetails());
+    for (let card of this.allCardDetails) {
+      if (card.nameOnCard === this.paymentDetails.nameOnCard &&
+        card.cardNo === this.paymentDetails.cardNo) {
+        this.paymentStatus = true;
+        break;
+      } else {
+        this.paymentStatus = false;
+      }
+    }
+    if (this.paymentStatus === true) {
+      this.notificationService.showSuccess("Payment Done", "Foodbox");
+      setTimeout(() => {
+        this.generateBill();
+      }, 3000);
+    } else {
+      this.notificationService.showError("Invalid Details", "Foodbox");
+    }
   }
 
-  setPayDetails(){
+  setPayDetails() {
     this.paymentDetails.cardNo = this.cardNo?.value;
     this.paymentDetails.cvv = this.cvv?.value;
     this.paymentDetails.expiry = this.paymentDetails?.expiry;
@@ -51,19 +78,19 @@ export class PaymentComponent implements OnInit {
     console.log(this.paymentDetails);
   }
 
-  get cardNo(){
+  get cardNo() {
     return this.paymentForm.get('cardNo');
   }
 
-  get cvv(){
+  get cvv() {
     return this.paymentForm.get('cvv');
   }
 
-  get expiry(){
+  get expiry() {
     return this.paymentForm.get('expiry');
   }
 
-  get nameOnCard(){
+  get nameOnCard() {
     return this.paymentForm.get('nameOnCard');
   }
 }
